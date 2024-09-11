@@ -187,9 +187,7 @@ public class Gamepad {
                     }
                     break;
                 }
-
             }
-
         }
     }
 

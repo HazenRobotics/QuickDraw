@@ -27,4 +27,8 @@ public class Charachter {
     public Attack[] getAttacks() {
         return attacks;
     }
+    public Attack getAttack(int i) {
+        return attacks[i];
+    }
+
 }
