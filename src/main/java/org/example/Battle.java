@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class Battle {
     private final ArrayList<Gamepad> gamepads = Main.getGamepads();
-    private final ArrayList<Charachter> team1;
-    private final ArrayList<Charachter> team2;
+    private final Team team1;
+    private final Team team2;
     int team1Index = -1;
     int team2Index = -1;
     private boolean team1goesFirst = false;
@@ -14,10 +14,10 @@ public class Battle {
     Charachter switchIn2 = null;
 
 
-    public Battle(Charachter[] t1, Charachter[] t2) {
-        team1 = (ArrayList<Charachter>) Arrays.stream(t1).toList();
-        team2 = (ArrayList<Charachter>) Arrays.stream(t2).toList();
-        while (!team2.isEmpty() || !team1.isEmpty()) {
+    public Battle(Team t1, Team t2) {
+        team1 = t1;
+        team2 = t2;
+        while (!team2.isTeamLeft() || !team1.isTeamLeft()) {
             planPhase();
             choosePhase();
             attackPhase();
@@ -31,17 +31,17 @@ public class Battle {
         long startTime = System.currentTimeMillis();
         while (startTime + 3000 > System.currentTimeMillis() && (team1Index == -1 || team2Index == -1)) {
             int timeLeft = (int) (3000 - (System.currentTimeMillis() - startTime));
-            if (chooseAttack(0) != -1) {
-                if (chooseAttack(1) == -1) {
+            if (team1.chooseAttack(0) != -1) {
+                if (team1.chooseAttack(0) == -1) {
                     team1goesFirst = true;
                 }
-                team1Index = chooseAttack(0);
+                team1Index = team1.chooseAttack(0);
             }
-            if (chooseAttack(0) != -1) {
-                if (chooseAttack(1) == -1) {
+            if (team1.chooseAttack(0) != -1) {
+                if (team1.chooseAttack(0) == -1) {
                     team1goesFirst = false;
                 }
-                team2Index = chooseAttack(1);
+                team2Index = team1.chooseAttack(0);
             }
 
         }
@@ -50,8 +50,8 @@ public class Battle {
 
     public void attackPhase() {
 
-        int p1 = team1.get(0).getAttackPriority(team2Index,team1Index,team1goesFirst);
-        int p2 = team2.get(0).getAttackPriority(team1Index,team2Index,!team1goesFirst);
+        int p1 = team1.fighter().getAttackPriority(team2Index,team1Index,team1goesFirst);
+        int p2 = team2.fighter().getAttackPriority(team1Index,team2Index,!team1goesFirst);
         int p;
         if(p1-p2==0) {
             p=p1;
@@ -60,29 +60,29 @@ public class Battle {
         }
         switch (p) {
             case 2: {
-                team1.get(0).attack(team1Index,team2.get(0),2);
+                team1.attack(team1Index,team2.fighter(),2);
                 break;
             }
             case -2: {
-                team2.get(0).attack(team2Index,team1.get(0),2);
+                team2.attack(team2Index,team1.fighter(),2);
                 break;
 
             }
             case -1: {
-                team2.get(0).attack(team2Index,team1.get(0),1);
-                team1.get(0).attack(team1Index,team2.get(0),0);
+                team2.attack(team2Index,team1.fighter(),1);
+                team1.attack(team1Index,team2.fighter(),0);
                 break;
 
             }
             case 1: {
-                team2.get(0).attack(team2Index,team1.get(0),0);
-                team1.get(0).attack(team1Index,team2.get(0),1);
+                team2.attack(team2Index,team1.fighter(),0);
+                team1.attack(team1Index,team2.fighter(),1);
                 break;
 
             }
             case 0: {
-                team2.get(0).attack(team2Index,team1.get(0),0);
-                team1.get(0).attack(team1Index,team2.get(0),0);
+                team2.attack(team2Index,team1.fighter(),0);
+                team1.attack(team1Index,team2.fighter(),0);
                 break;
             }
         }
@@ -98,44 +98,7 @@ public class Battle {
         }
     }
 
-    public int chooseAttack(int i,ArrayList<Charachter> team) {
-        Gamepad gamepad = gamepads.get(i);
-        if (gamepad.a) {
-            return 0;
-        } else if (gamepad.b) {
-            return 1;
-        } else if (gamepad.x) {
-            return 2;
-        } else if (gamepad.y) {
-            return 3;
-        } else if (gamepad.r || gamepad.l) {
-            if(i==0) {
-                switchIn1=null;
-            } else {
-                switchIn2=null;
-            }
-            if(team.size()>1) {
-                if(i==0) {
-                    switchIn1=team.get(1);
-                } else {
-                    switchIn2=team.get(1);
-                }
-                if(gamepad.l && team.size()>2) {
-                    if(i==0) {
-                        switchIn1=team.get(2);
-                    } else {
-                        switchIn2=team.get(2);
-                    }
-                }
-            }
 
-            return 4;
-        } else if (gamepad.zl || gamepad.zr) {
-            return 5;
-        } else {
-            return -1;
-        }
-    }
 
 
 }
