@@ -14,7 +14,7 @@ public class Charachter {
     private final int attackPower;
     private final double chargeRatio;
     private final String name;
-    private final ArrayList<Effects> status;
+    private final ArrayList<Effect> status;
     private final String folder;
     private final int hp;
     private final int priorityBonus = 0;

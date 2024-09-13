@@ -2,9 +2,9 @@ package org.example.Characters;
 
 import org.example.Charachter;
 
-public class Orion extends Charachter {
+public class Gliese extends Charachter {
 
-    public Orion() {
+    public Gliese() {
         super("Orion", "TBD", 100,1,1.25);
     }
     @Override public void normal(Charachter enemy,int mul) {

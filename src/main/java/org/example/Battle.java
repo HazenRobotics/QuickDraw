@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Battle {
     private final ArrayList<Gamepad> gamepads = Main.getGamepads();
@@ -9,9 +8,9 @@ public class Battle {
     private final Team team2;
     int team1Index = -1;
     int team2Index = -1;
-    private boolean team1goesFirst = false;
     Charachter switchIn1 = null;
     Charachter switchIn2 = null;
+    private boolean team1goesFirst = false;
 
 
     public Battle(Team t1, Team t2) {
@@ -49,40 +48,48 @@ public class Battle {
     }
 
     public void attackPhase() {
+        if (team2Index == -1 || team1Index == -1) {
+            if (team2Index == -1) {
+                team1.attack(team1Index, team2.fighter(), 2);
+            } else if (team1Index == -1) {
+                team2.attack(team2Index, team1.fighter(), 2);
+            }
+            return;
+        }
 
-        int p1 = team1.fighter().getAttackPriority(team2Index,team1Index,team1goesFirst);
-        int p2 = team2.fighter().getAttackPriority(team1Index,team2Index,!team1goesFirst);
+        int p1 = team1.fighter().getAttackPriority(team2Index, team1Index, team1goesFirst);
+        int p2 = team2.fighter().getAttackPriority(team1Index, team2Index, !team1goesFirst);
         int p;
-        if(p1-p2==0) {
-            p=p1;
+        if (p1 - p2 == 0) {
+            p = p1;
         } else {
-            p=p1-p2;
+            p = p1 - p2;
         }
         switch (p) {
             case 2: {
-                team1.attack(team1Index,team2.fighter(),2);
+                team1.attack(team1Index, team2.fighter(), 2);
                 break;
             }
             case -2: {
-                team2.attack(team2Index,team1.fighter(),2);
+                team2.attack(team2Index, team1.fighter(), 2);
                 break;
 
             }
             case -1: {
-                team2.attack(team2Index,team1.fighter(),1);
-                team1.attack(team1Index,team2.fighter(),0);
+                team2.attack(team2Index, team1.fighter(), 1);
+                team1.attack(team1Index, team2.fighter(), 0);
                 break;
 
             }
             case 1: {
-                team2.attack(team2Index,team1.fighter(),0);
-                team1.attack(team1Index,team2.fighter(),1);
+                team2.attack(team2Index, team1.fighter(), 0);
+                team1.attack(team1Index, team2.fighter(), 1);
                 break;
 
             }
             case 0: {
-                team2.attack(team2Index,team1.fighter(),0);
-                team1.attack(team1Index,team2.fighter(),0);
+                team2.attack(team2Index, team1.fighter(), 0);
+                team1.attack(team1Index, team2.fighter(), 0);
                 break;
             }
         }
@@ -97,8 +104,6 @@ public class Battle {
             int timeLeft = (int) (time - (System.currentTimeMillis() - startTime));
         }
     }
-
-
 
 
 }
