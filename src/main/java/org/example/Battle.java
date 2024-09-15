@@ -8,8 +8,6 @@ public class Battle {
     private final Team team2;
     int team1Index = -1;
     int team2Index = -1;
-    Charachter switchIn1 = null;
-    Charachter switchIn2 = null;
     private boolean team1goesFirst = false;
 
 
