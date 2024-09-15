@@ -28,17 +28,17 @@ public class Battle {
         long startTime = System.currentTimeMillis();
         while (startTime + 3000 > System.currentTimeMillis() && (team1Index == -1 || team2Index == -1)) {
             int timeLeft = (int) (3000 - (System.currentTimeMillis() - startTime));
-            if (team1.chooseAttack(0) != -1) {
-                if (team1.chooseAttack(0) == -1) {
+            if (team1.chooseAttack() != -1) {
+                if (team1.chooseAttack() == -1) {
                     team1goesFirst = true;
                 }
-                team1Index = team1.chooseAttack(0);
+                team1Index = team1.chooseAttack();
             }
-            if (team1.chooseAttack(0) != -1) {
-                if (team1.chooseAttack(0) == -1) {
+            if (team2.chooseAttack() != -1) {
+                if (team1.chooseAttack() == -1) {
                     team1goesFirst = false;
                 }
-                team2Index = team1.chooseAttack(0);
+                team2Index = team1.chooseAttack();
             }
 
         }
