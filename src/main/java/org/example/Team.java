@@ -59,7 +59,7 @@ public class Team {
         return team.get(i);
     }
 
-    public void attack(int a, Charachter enemy, int p) {
+    public void attack(int a, Charachter enemy, double p) {
         switch (a) {
             case 0: {
                 fighter().normal(enemy, p);

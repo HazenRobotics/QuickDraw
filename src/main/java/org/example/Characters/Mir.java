@@ -2,31 +2,31 @@ package org.example.Characters;
 
 import org.example.Charachter;
 import org.example.Effect;
-import org.example.Main;
 
-public class Leo extends Charachter {
+public class Mir extends Charachter {
 
-    public Leo() {
-        super("Leo", "TBD", 70,1.5,1);
+    public Mir() {
+        super("Mir", "TBD", 150,1,1);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);
-        if(Main.random(0,10)<3 && enemy.hasEffect("Poison")) {
-            this.addEffect(Effect.getAllEffects()[1]);
-        }
+        addEffect(Effect.getAllEffects()[6]);
+
     }
     @Override public void light(Charachter enemy,double p) {
         super.light(enemy,p);
-        if(enemy.hasEffect("Poison")) {
-            enemy.changeHp((int) (10*getAttackPower()));
+        if(p>=1) {
+            addEffect(Effect.getAllEffects()[7]);
         } else {
-            enemy.addEffect(Effect.getAllEffects()[2]);
+            enemy.addEffect(Effect.getAllEffects()[7]);
         }
+
     }
     @Override public void heavy(Charachter enemy,double p) {
         super.heavy(enemy,p);
-        if(Main.random(0,10)<3) {
-            this.addEffect(Effect.getAllEffects()[1]);
+        if(hasEffect("Block")) {
+            super.heavy(enemy,p);
+            getStatus().remove(Effect.getAllEffects()[0]);
         }
 
     }
@@ -36,16 +36,20 @@ public class Leo extends Charachter {
     }
     @Override public void switchOut(Charachter enemy,double p) {
         super.switchOut(enemy,p);
-        enemy.addEffect(Effect.getAllEffects()[2]);
+        getTeam().getSwitchIn().block(enemy,p);
 
     }
     @Override public void block(Charachter enemy,double p) {
-        super.block(enemy,p);
+        Effect e = Effect.getAllEffects()[1];
+        if(p==2) {
+            e.setDuration(2);
+        }
+        addEffect(e);
+
     }
     @Override public void ultimate(Charachter enemy, double p) {
-        Effect e = Effect.getAllEffects()[1];
-        e.setDuration(2);
-        addEffect(e);
+        addEffect(Effect.getAllEffects()[6]);
+        addEffect(Effect.getAllEffects()[1]);
 
     }
 }

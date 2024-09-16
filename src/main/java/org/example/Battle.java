@@ -65,29 +65,29 @@ public class Battle {
         }
         switch (p) {
             case 2: {
-                team1.attack(team1Index, team2.fighter(), 2);
+                team1.attack(team1Index, team2.fighter(), 1.5);
                 break;
             }
             case -2: {
-                team2.attack(team2Index, team1.fighter(), 2);
+                team2.attack(team2Index, team1.fighter(), 1.5);
                 break;
 
             }
             case -1: {
                 team2.attack(team2Index, team1.fighter(), 1);
-                team1.attack(team1Index, team2.fighter(), 0);
+                team1.attack(team1Index, team2.fighter(), 0.75);
                 break;
 
             }
             case 1: {
-                team2.attack(team2Index, team1.fighter(), 0);
+                team2.attack(team2Index, team1.fighter(), 0.75);
                 team1.attack(team1Index, team2.fighter(), 1);
                 break;
 
             }
             case 0: {
-                team2.attack(team2Index, team1.fighter(), 0);
-                team1.attack(team1Index, team2.fighter(), 0);
+                team2.attack(team2Index, team1.fighter(), 1);
+                team1.attack(team1Index, team2.fighter(), 1);
                 break;
             }
         }

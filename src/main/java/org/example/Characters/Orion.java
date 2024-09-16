@@ -12,43 +12,43 @@ public class Orion extends Charachter {
     }
 
 
-    @Override public void normal(Charachter enemy, int p) {
+    @Override public void normal(Charachter enemy, double p) {
         super.normal(enemy, p);
-        int damage = 15+team.getSpecialCharge()/5;
-        enemy.changeHp(damage*p);
+        double damage = 15+team.getSpecialCharge()/5;
+        enemy.changeHp((int) (damage*p));
     }
-    @Override public void light(Charachter enemy,int p) {
+    @Override public void light(Charachter enemy,double p) {
         super.light(enemy, p);
         if(p>1) {
             team.addCharge(10);
         }
     }
-    @Override public void heavy(Charachter enemy,int p) {
+    @Override public void heavy(Charachter enemy,double p) {
         super.heavy(enemy, p);
-        enemy.changeHp(25*p);
+        enemy.changeHp((int) (25*p));
         team.addCharge(10);
     }
-    @Override public void switchIn(Charachter enemy,int p) {
+    @Override public void switchIn(Charachter enemy,double p) {
         super.switchIn(enemy,p);
-        enemy.changeHp(15*p);
+        enemy.changeHp((int) (15*p));
         if(team.getSpecialCharge()>75) {
             team.setSpecialCharge(100);
         }
 
     }
-    @Override public void switchOut(Charachter enemy,int p) {
+    @Override public void switchOut(Charachter enemy,double p) {
         super.switchOut(enemy,p);
-        enemy.changeHp(15*p);
+        enemy.changeHp((int) (15*p));
 
     }
-    @Override public void block(Charachter enemy,int p) {
+    @Override public void block(Charachter enemy,double p) {
         super.block(enemy,p);
         if(p>1) {
             team.addCharge(10);
         }
 
     }
-    @Override public void ultimate(Charachter enemy, int p) {
+    @Override public void ultimate(Charachter enemy, double p) {
         if(team.size()>1) {
             if (Main.choice(team.getGamepadIndex(),team.size()-1,"Whos ultimate would you like to use?")==0){
                 team.get(1);

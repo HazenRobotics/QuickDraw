@@ -10,12 +10,12 @@ public abstract class Effect {
             new Effect("Block","TBD",0,1) {
                 @Override
                 public void trigger() {
-                    target.addDefense(0.5);
+                    target.addDefense(2);
                 }
 
                 @Override
                 public void unTrigger() {
-                    target.addDefense(-0.5);
+                    target.addDefense(1);
                 }
             },
             new Effect("Perfect Block", "TBD", 1, 1) {
@@ -41,10 +41,71 @@ public abstract class Effect {
 
                 }
             },
+            new Effect("Attack Boost","TBD",0,3) {
+                @Override
+                public void trigger() {
+                    target.setAttackPower(target.getAttackPower()+0.25);
+                }
+
+                @Override
+                public void unTrigger() {
+                    target.setAttackPower(target.getBaseStats()[0]);
+                }
+            },
+            new Effect("Sweeper","TBD",0,1) {
+                @Override
+                public void trigger() {
+                    if(target.getTeam().fighter().equals(target)) {
+                        setDuration(2);
+                    } else {
+                        setDuration(0);
+                    }
+                    target.setAttackPower(target.getAttackPower()+0.1);
+
+                }
+
+                @Override
+                public void unTrigger() {
+                    target.setAttackPower(target.getBaseStats()[0]);
+                }
+            },
+            new Effect("Opening","TBD",0,1) {
+                @Override
+                public void trigger() {
+                    target.setDefense(-0.5);
+                }
+
+                @Override
+                public void unTrigger() {
+                    target.setDefense(1);
+                }
+            },
+            new Effect("Bulk up","TBD",0,2) {
+                @Override
+                public void trigger() {
+                    target.addDefense(0.33);
+                }
+
+                @Override
+                public void unTrigger() {
+                    target.addDefense(-0.66);
+                }
+            },
+            new Effect("Weakness","TBD",0,2) {
+                @Override
+                public void trigger() {
+                    target.setAttackPower(0.5);
+                }
+
+                @Override
+                public void unTrigger() {
+                    target.setAttackPower(target.getBaseStats()[0]);
+                }
+            },
     };
     private Charachter target;
     private int triggerTime;
-    private int duration=0;
+    private int duration;
     private String name;
     private String folder;
 
@@ -72,6 +133,11 @@ public abstract class Effect {
     public int getDuration() {
         return duration;
     }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
     public boolean tickDown() {
         duration--;
         return duration<=0;
