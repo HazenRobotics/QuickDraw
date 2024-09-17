@@ -6,7 +6,7 @@ import org.example.Effect;
 public class Mir extends Charachter {
 
     public Mir() {
-        super("Mir", "TBD", 150,1,1);
+        super("Mir", "TBD", 150,0.9,1);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);
