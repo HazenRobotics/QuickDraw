@@ -8,7 +8,9 @@ public class Velorum extends Charachter {
         super("Velorum", "TBD", 100,1,1.25);
     }
     @Override public void normal(Charachter enemy,double p) {
-        super.normal(enemy,p);
+        for(Charachter c:enemy.getTeam().get) {
+
+        }
 
     }
     @Override public void light(Charachter enemy,double p) {

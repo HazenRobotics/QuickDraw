@@ -12,11 +12,7 @@ public abstract class Effect {
                 public void trigger() {
                     target.addDefense(2);
                 }
-
-                @Override
-                public void unTrigger() {
-                    target.addDefense(1);
-                }
+                
             },
             new Effect("Perfect Block", "TBD", 1, 1) {
                 @Override
@@ -24,10 +20,7 @@ public abstract class Effect {
 
                 }
 
-                @Override
-                public void unTrigger() {
 
-                }
             },
             new Effect("Poison", "TBD", 2, 3) {
                 @Override
@@ -36,21 +29,13 @@ public abstract class Effect {
                     target.changeHp(damage);
                 }
 
-                @Override
-                public void unTrigger() {
-
-                }
             },
             new Effect("Attack Boost","TBD",0,3) {
                 @Override
                 public void trigger() {
-                    target.setAttackPower(target.getAttackPower()+0.25);
+                    target.addAttackPower(0.5);
                 }
 
-                @Override
-                public void unTrigger() {
-                    target.setAttackPower(target.getBaseStats()[0]);
-                }
             },
             new Effect("Sweeper","TBD",0,1) {
                 @Override
@@ -64,10 +49,6 @@ public abstract class Effect {
 
                 }
 
-                @Override
-                public void unTrigger() {
-                    target.setAttackPower(target.getBaseStats()[0]);
-                }
             },
             new Effect("Opening","TBD",0,1) {
                 @Override
@@ -75,21 +56,13 @@ public abstract class Effect {
                     target.setDefense(-0.5);
                 }
 
-                @Override
-                public void unTrigger() {
-                    target.setDefense(1);
-                }
             },
             new Effect("Bulk up","TBD",0,2) {
                 @Override
                 public void trigger() {
-                    target.addDefense(0.33);
+                    target.addDefense(0.5);
                 }
 
-                @Override
-                public void unTrigger() {
-                    target.addDefense(-0.66);
-                }
             },
             new Effect("Weakness","TBD",0,2) {
                 @Override
@@ -97,10 +70,6 @@ public abstract class Effect {
                     target.setAttackPower(0.5);
                 }
 
-                @Override
-                public void unTrigger() {
-                    target.setAttackPower(target.getBaseStats()[0]);
-                }
             },
     };
     private Charachter target;
@@ -152,7 +121,6 @@ public abstract class Effect {
 
     public abstract void trigger();
 
-    public abstract void unTrigger();
 }
 interface EffectVoid {
     void run();

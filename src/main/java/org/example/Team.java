@@ -42,6 +42,7 @@ public class Team {
         team.set(i,fighter());
         team.set(0,temp);
     }
+    
     public void switchFighter(Charachter c) {
         switchFighter(team.indexOf(c));
     }

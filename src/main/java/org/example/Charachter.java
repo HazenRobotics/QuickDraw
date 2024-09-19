@@ -66,6 +66,10 @@ public class Charachter {
     public void setAttackPower(double attackPower) {
         this.attackPower = attackPower;
     }
+    public void addAttackPower(double add) {
+        this.attackPower = add;
+
+    }
 
     public ArrayList<Effect> getStatus() {
         return status;
@@ -175,9 +179,6 @@ public class Charachter {
         }
         if (p > 2) {
             p = 2;
-        }
-        if (p < -2) {
-            p = -2;
         }
         return (int) p;
     }
