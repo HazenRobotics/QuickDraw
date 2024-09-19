@@ -1,6 +1,10 @@
 package org.example.Characters;
 
 import org.example.Charachter;
+import org.example.Effect;
+import org.example.Main;
+
+import java.util.ArrayList;
 
 public class Velorum extends Charachter {
 
@@ -8,21 +12,29 @@ public class Velorum extends Charachter {
         super("Velorum", "TBD", 100,1,1.25);
     }
     @Override public void normal(Charachter enemy,double p) {
-        for(Charachter c:enemy.getTeam().get) {
-
+        for(Charachter c:enemy.getTeam().getTeam()) {
+            super.normal(c,p/2);
         }
 
     }
     @Override public void light(Charachter enemy,double p) {
-        super.light(enemy,p);
+        ArrayList<Charachter> c = enemy.getTeam().getTeam();
+        super.light(c.get(Main.random(0,c.size()-1)),p/2);
+        super.light(c.get(Main.random(0,c.size()-1)),p/2);
+
 
     }
     @Override public void heavy(Charachter enemy,double p) {
-        super.heavy(enemy,p);
+        for(Charachter c:enemy.getTeam().getTeam()) {
+            c.addEffect(Effect.getAllEffects()[9]);
+        }
 
     }
     @Override public void switchIn(Charachter enemy,double p) {
         super.switchIn(enemy,p);
+        for(Charachter c:enemy.getTeam().getTeam()) {
+           c.changeHp(3);
+        }
 
     }
     @Override public void switchOut(Charachter enemy,double p) {
@@ -30,9 +42,15 @@ public class Velorum extends Charachter {
 
     }
     @Override public void block(Charachter enemy,double p) {
-
+        super.block(enemy,p);
+        if(p==2) {
+            ArrayList<Charachter> c = enemy.getTeam().getTeam();
+            super.light(c.get(Main.random(0,c.size()-1)),p/2);
+        }
     }
     @Override public void ultimate(Charachter enemy, double p) {
-
+        for(Charachter c:enemy.getTeam().getTeam()) {
+            c.changeHp(c.getHp()/3);
+        }
     }
 }

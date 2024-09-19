@@ -23,6 +23,7 @@ public class Charachter {
     private double defense = 1;
     private Team team;
     private double[] baseStats;
+    private Charachter[] forms;
 
     public Charachter(String n, String f, int m, double a, double c) {
         maxHP = m;
@@ -33,6 +34,14 @@ public class Charachter {
         chargeRatio = c;
         hp = maxHP;
         baseStats= new double[]{a, c};
+    }
+
+    public void setForms(Charachter[] forms) {
+        this.forms = forms;
+    }
+
+    public Charachter[] getForms() {
+        return forms;
     }
 
     public int changeHp(int h) {

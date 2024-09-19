@@ -50,6 +50,10 @@ public class Team {
         switchFighter(switchIn);
     }
 
+    public ArrayList<Charachter> getTeam() {
+        return team;
+    }
+
     public int getGamepadIndex() {
         return gamepadIndex;
     }

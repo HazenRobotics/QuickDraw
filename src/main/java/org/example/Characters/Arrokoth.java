@@ -4,6 +4,7 @@ import org.example.Charachter;
 
 public class Arrokoth extends Charachter {
 
+
     public Arrokoth() {
         super("Arrokoth", "TBD", 100,1,1.25);
     }
