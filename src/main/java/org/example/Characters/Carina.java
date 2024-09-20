@@ -5,10 +5,11 @@ import org.example.Charachter;
 public class Carina extends Charachter {
 
     public Carina() {
-        super("Carina", "TBD", 100,1,1.25);
+        super("Carina", "TBD", 70,1,5);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);
+
 
     }
     @Override public void light(Charachter enemy,double p) {
@@ -28,7 +29,7 @@ public class Carina extends Charachter {
 
     }
     @Override public void block(Charachter enemy,double p) {
-
+        super.block(enemy, p);
     }
     @Override public void ultimate(Charachter enemy, double p) {
 
