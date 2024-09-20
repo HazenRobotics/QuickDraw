@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Velorum extends Charachter {
 
     public Velorum() {
-        super("Velorum", "TBD", 100,1,1.25);
+        super("Velorum", "TBD", 70,1.1,1.35);
     }
     @Override public void normal(Charachter enemy,double p) {
         for(Charachter c:enemy.getTeam().getTeam()) {

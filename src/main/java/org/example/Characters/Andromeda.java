@@ -6,7 +6,7 @@ import org.example.Effect;
 public class Andromeda extends Charachter {
 
     public Andromeda() {
-        super("Andromeda", "TBD", 100,1,1.25);
+        super("Andromeda", "TBD", 175,0.66,1.05);
     }
     @Override public void normal(Charachter enemy,double p) {
         enemy.addEffect(Effect.getAllEffects()[10]);

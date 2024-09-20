@@ -97,12 +97,27 @@ public abstract class Effect {
                 }
 
             },
-            new Effect("Future Attack", "TBD", 0, 5) {
+            new Effect("Future Attack", "TBD", 2, 5) {
                 @Override
                 public void trigger() {
                     if (duration == 0) {
                         target.changeHp(20);
 
+                    }
+                }
+
+            },
+            new Effect("Locked", "TBD", 0, 2) {
+                @Override
+                public void trigger() {
+                }
+
+            },
+            new Effect("Switch", "TBD", 2, 1) {
+                @Override
+                public void trigger() {
+                    if(Main.choice(target.getTeam().getGamepadIndex(),1,"Would you like to switch")==0) {
+                        target.getTeam().switchFighter(Main.choice(target.getTeam().getGamepadIndex(),1,"Who would you like to switch"));
                     }
                 }
 

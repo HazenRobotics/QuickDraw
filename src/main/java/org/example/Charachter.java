@@ -12,17 +12,17 @@ public class Charachter {
     };
 
     private final int maxHP;
-    private double attackPower;
     private final double chargeRatio;
     private final String name;
     private final ArrayList<Effect> status;
     private final String folder;
-    private int hp;
     private final int priorityBonus = 0;
     private final int priorityMinimum = -2;
+    private double attackPower;
+    private int hp;
     private double defense = 1;
     private Team team;
-    private double[] baseStats;
+    private final double[] baseStats;
     private Charachter[] forms;
 
     public Charachter(String n, String f, int m, double a, double c) {
@@ -33,15 +33,15 @@ public class Charachter {
         attackPower = a;
         chargeRatio = c;
         hp = maxHP;
-        baseStats= new double[]{a, c};
-    }
-
-    public void setForms(Charachter[] forms) {
-        this.forms = forms;
+        baseStats = new double[]{a, c};
     }
 
     public Charachter[] getForms() {
         return forms;
+    }
+
+    public void setForms(Charachter[] forms) {
+        this.forms = forms;
     }
 
     public int changeHp(int h) {
@@ -52,20 +52,16 @@ public class Charachter {
         return (int) (h / defense);
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public double getDefense() {
         return defense;
     }
 
-    public double[] getBaseStats() {
-        return baseStats;
-    }
-
     public void setDefense(double defense) {
         this.defense = defense;
+    }
+
+    public double[] getBaseStats() {
+        return baseStats;
     }
 
     public double getAttackPower() {
@@ -75,6 +71,7 @@ public class Charachter {
     public void setAttackPower(double attackPower) {
         this.attackPower = attackPower;
     }
+
     public void addAttackPower(double add) {
         this.attackPower = add;
 
@@ -94,6 +91,10 @@ public class Charachter {
 
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public void addDefense(double defense) {
@@ -143,14 +144,19 @@ public class Charachter {
     }
 
     public void switchIn(Charachter enemy, double p) {
-        enemy.changeHp((int) (12 * attackPower * p));
-        team.switchFighter();
-        team.fighter().switchOut(enemy, p);
+        if (enemy.hasEffect("Locked")) {
+            enemy.changeHp((int) (12 * attackPower * p));
+            team.switchFighter();
+            team.fighter().switchOut(enemy, p);
+        }
     }
 
     public void switchOut(Charachter enemy, double p) {
-        enemy.changeHp((int) (10 * attackPower * p));
-        team.addCharge((int) (((10 * p) / 2) * chargeRatio));
+        if (enemy.hasEffect("Locked")) {
+            enemy.changeHp((int) (10 * attackPower * p));
+            team.addCharge((int) (((10 * p) / 2) * chargeRatio));
+        }
+
     }
 
     public void block(Charachter enemy, double p) {
