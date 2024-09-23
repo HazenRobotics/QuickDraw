@@ -15,15 +15,12 @@ public class Main {
         Controller[] controllers = createDefaultEnvironment().getControllers();
         gamepads = new ArrayList<>();
         for (int i = 0; i < controllers.length; i++) {
-            if (
-                    controllers[i].getType() == Controller.Type.STICK || controllers[i].getType() == Controller.Type.GAMEPAD ||
-                            controllers[i].getType() == Controller.Type.WHEEL || controllers[i].getType() == Controller.Type.FINGERSTICK
-            )
+            if (controllers[i].getType() == Controller.Type.STICK || controllers[i].getType() == Controller.Type.GAMEPAD || controllers[i].getType() == Controller.Type.WHEEL || controllers[i].getType() == Controller.Type.FINGERSTICK)
                 gamepads.add(new Gamepad(controllers[i].getName()));
         }
-
+        Runnable dimensionThread = () -> Dimension.dimensionLoop();
+        dimensionThread.run();
         new GameScreen();
-
     }
 
     public static int random(int low, int high) {
@@ -73,7 +70,7 @@ public class Main {
     }
 
     public int choice(int i, int count, String text, String[] labels) {
-        return choice(i,count,text);
+        return choice(i, count, text);
     }
 
 }

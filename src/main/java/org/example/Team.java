@@ -1,6 +1,8 @@
 package org.example;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Team {
     private final ArrayList<Charachter> team;
@@ -70,19 +72,34 @@ public class Team {
                 fighter().normal(enemy, p);
             }
             case 1: {
-                fighter().normal(enemy, p);
+                fighter().light(enemy, p);
             }
             case 2: {
-                fighter().normal(enemy, p);
+                fighter().heavy(enemy, p);
             }
             case 3: {
-                fighter().normal(enemy, p);
+                fighter().block(enemy, p);
             }
             case 4: {
-                fighter().normal(enemy, p);
+                fighter().switchIn(enemy, p);
             }
+            case 5: {
+                fighter().ultimate(enemy,p);
+                setSpecialCharge(0);
+            }
+            case 6: {
+                int i = Arrays.asList(fighter().getForms()).indexOf(fighter())+1;
+                if(i==fighter().getForms().length) {
+                    i=0;
+                }
+                fighter().getTeam().transform(0,fighter().getForms()[i]);
+            }
+
         }
 
+    }
+    public void set(int i,Charachter c) {
+        team.set(i,c);
     }
 
     public int chooseAttack() {
@@ -104,12 +121,25 @@ public class Team {
                 }
             }
             return 4;
-        } else if (gamepad.zl || gamepad.zr) {
-            return 5;
-        } else {
+        } else if ((gamepad.zl || gamepad.zr))  {
+            if(getSpecialCharge()==100) {
+                return 5;
+            } else {
+                return 6;
+            }
+        }
+        else {
             return -1;
         }
 
+    }
+    //i grabs target
+    //c is switch out
+    public void transform(int i,Charachter c) {
+        Charachter target = get(i);
+        c.setHp(target.getHp());
+        c.setStatus(target.getStatus());
+        set(i,c);
     }
 
 

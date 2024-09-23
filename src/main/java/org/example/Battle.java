@@ -11,7 +11,7 @@ public class Battle {
     private boolean team1goesFirst = false;
 
 
-    public Battle(Team t1, Team t2) {
+    public Battle(Team t1, Team t2) throws ReflectiveOperationException {
         team1 = t1;
         team2 = t2;
         while (!team2.isTeamLeft() || !team1.isTeamLeft()) {
@@ -46,6 +46,15 @@ public class Battle {
     }
 
     public void attackPhase() {
+        Dimension.getCurrentDimension().runForEveryone(team1,team2);
+        for (Charachter c : team1.getTeam()) {
+            c.setToBaseStats();
+            c.applyEffects(0);
+        }
+        for (Charachter c : team2.getTeam()) {
+            c.setToBaseStats();
+            c.applyEffects(0);
+        }
         if (team2Index == -1 || team1Index == -1) {
             if (team2Index == -1) {
                 team1.attack(team1Index, team2.fighter(), 2);
@@ -62,6 +71,12 @@ public class Battle {
             p = p1;
         } else {
             p = p1 - p2;
+        }
+        for (Charachter c : team1.getTeam()) {
+            c.applyEffects(2);
+        }
+        for (Charachter c : team2.getTeam()) {
+            c.applyEffects(2);
         }
         switch (p) {
             case 2: {
@@ -91,15 +106,33 @@ public class Battle {
                 break;
             }
         }
+        for (Charachter c : team1.getTeam()) {
+            c.applyEffects(2);
+        }
+        for (Charachter c : team2.getTeam()) {
+            c.applyEffects(2);
+        }
 
 
     }
 
-    public void planPhase() {
+    public void planPhase() throws ReflectiveOperationException {
         long startTime = System.currentTimeMillis();
         int time = 10000;
-        while (startTime + time > System.currentTimeMillis()) {
+        boolean team1Skip = false;
+        boolean team2Skip = false;
+        while (startTime + time > System.currentTimeMillis() && !(team2Skip && team1Skip)) {
+            for(Gamepad g:gamepads) {
+                g.update();
+            }
             int timeLeft = (int) (time - (System.currentTimeMillis() - startTime));
+            if(gamepads.get(0).a && !team1Skip) {
+                team1Skip=true;
+            }
+            if(gamepads.get(1).a && !team2Skip) {
+                team2Skip=true;
+            }
+
         }
     }
 

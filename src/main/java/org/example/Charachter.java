@@ -3,27 +3,19 @@ package org.example;
 import java.util.ArrayList;
 
 public class Charachter {
-    public static final double[][] MATCHUP_TABLE = new double[][]{
-            new double[]{0, 1, 1, -2, -1},
-            new double[]{-1, 0, 2, -2, 1},
-            new double[]{-1, -2, 0.5, 1, 0},
-            new double[]{2, 1.5, -1, 0, 2},
-            new double[]{1, -1, 0, -2, 0}
-    };
-
-    private final int maxHP;
-    private final double chargeRatio;
-    private final String name;
-    private final ArrayList<Effect> status;
-    private final String folder;
-    private final int priorityBonus = 0;
-    private final int priorityMinimum = -2;
+    public static final double[][] MATCHUP_TABLE = new double[][]{new double[]{0, 1, 1, -2, -1}, new double[]{-1, 0, 2, -2, 1}, new double[]{-1, -2, 0.5, 1, 0}, new double[]{2, 1.5, -1, 0, 2}, new double[]{1, -1, 0, -2, 0}};
+    private double[] baseStats;
+    private int maxHP;
+    private double chargeRatio;
+    private String name;
+    private ArrayList<Effect> status;
+    private String folder;
+    private int priorityBonus = 0;
+    private int priorityMinimum = -2;
     private double attackPower;
     private int hp;
     private double defense = 1;
     private Team team;
-    private final double[] baseStats;
-    private Charachter[] forms;
 
     public Charachter(String n, String f, int m, double a, double c) {
         maxHP = m;
@@ -37,13 +29,21 @@ public class Charachter {
     }
 
     public Charachter[] getForms() {
-        return forms;
+        return null;
     }
 
-    public void setForms(Charachter[] forms) {
-        this.forms = forms;
+    public void setToBaseStats() {
+        attackPower = baseStats[0];
+        chargeRatio = baseStats[1];
+        defense = 1;
     }
-
+    public void applyEffects(int time) {
+        for(Effect e:getStatus()) {
+            if(e.getTriggerTime()==0) {
+                e.trigger();
+            }
+        }
+    }
     public int changeHp(int h) {
         if (hasEffect("Perfect Block")) {
             return 0;
@@ -81,8 +81,16 @@ public class Charachter {
         return status;
     }
 
+    public void setStatus(ArrayList<Effect> status) {
+        this.status = status;
+    }
+
     public int getHp() {
         return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public int getMaxHP() {
@@ -125,7 +133,6 @@ public class Charachter {
         }
     }
 
-
     public void normal(Charachter enemy, double p) {
         enemy.changeHp((int) (15 * attackPower * p));
         team.addCharge((int) (((15 * p) / 2) * chargeRatio));
@@ -166,7 +173,6 @@ public class Charachter {
     public void ultimate(Charachter enemy, double p) {
 
     }
-
 
     public int getAttackPriority(int t1, int t2, boolean first) {
         double p = MATCHUP_TABLE[t1][t2];
