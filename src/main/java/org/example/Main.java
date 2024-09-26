@@ -1,11 +1,7 @@
 package org.example;
 
-//import net.java.games.input.Controller;
-
-import java.io.File;
 import java.util.ArrayList;
 
-//import static org.example.Gamepad.createDefaultEnvironment;
 
 public class Main {
     static private ArrayList<Gamepad> gamepads;
@@ -14,8 +10,8 @@ public class Main {
         Animation a = new Animation(
                 new double[] {8.83,2.47,7.87,9.32,4.11,4.25,6.48,3.13,8.55,5.57},
                 new double[] {8.25,4.29,7.99,6.98,5.93,8.89,4.58,7.42,9.97,2.45},
-                1,
-                5000,
+                100,
+                10000,
                 "C:/Users/C1nner/IdeaProjects/QuickDraw/src/main/java/org/example/Orion",
                 new int[]{0},
                 false
@@ -24,8 +20,10 @@ public class Main {
         System.out.println("test");
         GameScreen.SYSTEM.add(GameScreen.TEST);
         GameScreen.TEST.setBounds(0,0,500,700);
+        wait(1000);
         a.animation(GameScreen.TEST).run();
-        System.out.println(a.getPosition(0.1)+"");
+
+        System.out.println(a.curve.calculate(0.1)+"");
 
 
     }

@@ -46,6 +46,23 @@ public class Charachter {
         this.forms = forms;
     }
 
+    public void setToBaseStats() {
+        attackPower = baseStats[0];
+        chargeRatio = baseStats[1];
+    }
+
+    public void applyEffects(int n) {
+        for (int i = 0; i < status.size(); i++) {
+            if (status.get(i).getTriggerTime() == n) {
+                status.get(i).trigger();
+                status.get(i).tickDown();
+                if(status.get(i).getDuration()==0) {
+                    status.remove(i);
+                }
+            }
+        }
+    }
+
     public int changeHp(int h) {
         if (hasEffect("Perfect Block")) {
             return 0;
@@ -83,8 +100,16 @@ public class Charachter {
         return status;
     }
 
+    public void setStatus(ArrayList<Effect> status) {
+        this.status = status;
+    }
+
     public int getHp() {
         return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public int getMaxHP() {

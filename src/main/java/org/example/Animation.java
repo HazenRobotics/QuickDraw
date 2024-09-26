@@ -2,32 +2,29 @@ package org.example;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 
 public class Animation {
-    Point[] points;
     double scale;
-    int timeMillis;
+    double timeMillis;
     String folder;
     int[] frameChange;
     boolean framesLoop;
-    int resolution=1000;
+    double resolution = 1000;
+    CubicBezierCurve curve;
 
-    public Animation(Point[] p, double s, int tm, String f, int[] fc, boolean fl) {
-        points = p;
-        scale = s;
-        timeMillis = tm;
-        folder = f;
-        frameChange = fc;
-        framesLoop = fl;
-    }
-    public Animation(double[] xp,double[] yp, double s, int tm, String f, int[] fc, boolean fl) {
-        points = new Point[xp.length];
-        for(int i=0; i<points.length; i++) {
-            points[i] = new Point((int) xp[i], (int) yp[i]);
+
+    public Animation(double[] xp, double[] yp, double s, int tm, String f, int[] fc, boolean fl) {
+        Vector2[] points = new Vector2[xp.length];
+        for (int i = 0; i < points.length; i++) {
+            points[i] = new Vector2(xp[i], yp[i]);
+            System.out.println(xp[i]);
+        }
+        curve = new CubicBezierCurve(points[0], points[1], points[2], points[3]);
+        for (int i = 4; i < points.length - 1; i++) {
+            curve.createC1ContinuousCurve(points[i], points[i + 1]);
         }
         scale = s;
         timeMillis = tm;
@@ -36,25 +33,13 @@ public class Animation {
         framesLoop = fl;
     }
 
-    public Point getPosition(double n) {
-        int x =  bezierCurve(points[0].x,points[1].x,points[2].x,points[3].x,n);
-        int y =  bezierCurve(points[0].y,points[1].y,points[2].y,points[3].y,n);
-        if(points.length>4) {
-            for(int i=0; i<points.length-5; i+=2) {
-                x +=  bezierCurve(points[i+3].x,(2*points[i+3].x-points[i+2].x),points[i+4].x,points[i+5].x,n);
-                y +=  bezierCurve(points[i+3].y,(2*points[i+3].y-points[i+2].y),points[i+4].y,points[i+5].y,n);
-
-            }
-        }
-
-        return new Point((int) (x*scale), (int) (y*scale));
-    }
-
-    public int bezierCurve(double w, double x, double y, double z, double t) {
-        return (int) (Math.pow(x, 3) * (z - y * 3 + x * 3 - w) +
-                        Math.pow(x, 2) * (y * 3 - x * 6 + w * 3) +
-                        t * (3 * x - 3 * w) +
-                        w);
+    public Animation(CubicBezierCurve cv, double s, int tm, String f, int[] fc, boolean fl) {
+        curve = cv;
+        scale = s;
+        timeMillis = tm;
+        folder = f;
+        frameChange = fc;
+        framesLoop = fl;
     }
 
     public int getFrameIndex(int timeMillis) {
@@ -79,15 +64,16 @@ public class Animation {
 
     public Thread animation(JLabel jLabel) {
         return new Thread(() -> {
+            //start
             long startTime = System.currentTimeMillis();
-            while (startTime + timeMillis > System.currentTimeMillis()) {
-                Point p = getPosition((int) ((System.currentTimeMillis() - startTime) / timeMillis));
-                jLabel.setBounds(p.x, p.y, jLabel.getWidth(), jLabel.getHeight());
-                getPosition(timeMillis);
-                Main.wait(timeMillis / resolution);
-                System.out.println(p.x+" "+p.y);
+            for (int i = 0; startTime + timeMillis > System.currentTimeMillis(); i++) {
+                //get point
+                Vector2 p = curve.calculate((System.currentTimeMillis() - startTime) / timeMillis);
+                //set postion of charachter
+                jLabel.setBounds((int) (p.getX() * scale), (int) (p.getY() * scale), jLabel.getWidth(), jLabel.getHeight());
+
                 try {
-                    jLabel.setIcon(getFrameImage(getFrameIndex(timeMillis)));
+                    jLabel.setIcon(getFrameImage(getFrameIndex((int) timeMillis)));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -97,7 +83,7 @@ public class Animation {
     }
 
     public ImageIcon getFrameImage(int frame) throws IOException {
-        return new ImageIcon( ImageIO.read(new File(folder).listFiles()[frame]));
+        return new ImageIcon(ImageIO.read(new File(folder).listFiles()[frame]));
     }
 
 }
