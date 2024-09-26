@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Charachter {
@@ -10,19 +11,20 @@ public class Charachter {
             new double[]{2, 1.5, -1, 0, 2},
             new double[]{1, -1, 0, -2, 0}
     };
-
-    private final int maxHP;
-    private final double chargeRatio;
-    private final String name;
-    private final ArrayList<Effect> status;
-    private final String folder;
-    private final int priorityBonus = 0;
-    private final int priorityMinimum = -2;
+    private String[] att;
+    private JLabel label;
+    private double[] baseStats;
+    private int maxHP;
+    private double chargeRatio;
+    private String name;
+    private ArrayList<Effect> status;
+    private String folder;
+    private int priorityBonus = 0;
+    private int priorityMinimum = -2;
     private double attackPower;
     private int hp;
     private double defense = 1;
     private Team team;
-    private final double[] baseStats;
     private Charachter[] forms;
 
     public Charachter(String n, String f, int m, double a, double c) {

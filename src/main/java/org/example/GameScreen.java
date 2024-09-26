@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameScreen {
-    private static final JFrame SYSTEM = new JFrame("");
-    private static final JLabel LABEL = new JLabel();
-    private static final JLabel TEXT1 = new JLabel();
-    private static final JLabel TEXT2 = new JLabel();
+    public static final JFrame SYSTEM = new JFrame("");
+    public static final JLabel LABEL = new JLabel();
+    public static final JLabel TEXT1 = new JLabel();
+    public static final JLabel TEXT2 = new JLabel();
+    public static final JLabel TEST = new JLabel();
     public GameScreen() {
 
         SYSTEM.add(TEXT1);

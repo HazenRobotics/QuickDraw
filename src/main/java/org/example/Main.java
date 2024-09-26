@@ -1,28 +1,32 @@
 package org.example;
 
-import net.java.games.input.Controller;
+//import net.java.games.input.Controller;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static org.example.Gamepad.createDefaultEnvironment;
+//import static org.example.Gamepad.createDefaultEnvironment;
 
 public class Main {
     static private ArrayList<Gamepad> gamepads;
 
     public static void main(String[] args) throws ReflectiveOperationException {
-        System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
-        Controller[] controllers = createDefaultEnvironment().getControllers();
-        gamepads = new ArrayList<>();
-        for (int i = 0; i < controllers.length; i++) {
-            if (
-                    controllers[i].getType() == Controller.Type.STICK || controllers[i].getType() == Controller.Type.GAMEPAD ||
-                            controllers[i].getType() == Controller.Type.WHEEL || controllers[i].getType() == Controller.Type.FINGERSTICK
-            )
-                gamepads.add(new Gamepad(controllers[i].getName()));
-        }
-
+        Animation a = new Animation(
+                new double[] {8.83,2.47,7.87,9.32,4.11,4.25,6.48,3.13,8.55,5.57},
+                new double[] {8.25,4.29,7.99,6.98,5.93,8.89,4.58,7.42,9.97,2.45},
+                1,
+                5000,
+                "C:/Users/C1nner/IdeaProjects/QuickDraw/src/main/java/org/example/Orion",
+                new int[]{0},
+                false
+        );
         new GameScreen();
+        System.out.println("test");
+        GameScreen.SYSTEM.add(GameScreen.TEST);
+        GameScreen.TEST.setBounds(0,0,500,700);
+        a.animation(GameScreen.TEST).run();
+        System.out.println(a.getPosition(0.1)+"");
+
 
     }
 
@@ -75,5 +79,8 @@ public class Main {
     public int choice(int i, int count, String text, String[] labels) {
         return choice(i,count,text);
     }
-
+    public static void wait(int timeMillis) {
+        long startTime = System.currentTimeMillis();
+        while (startTime+timeMillis>System.currentTimeMillis());
+    }
 }
