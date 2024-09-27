@@ -123,7 +123,7 @@ public class Battle {
         boolean team2Skip = false;
         while (startTime + time > System.currentTimeMillis() && !(team2Skip && team1Skip)) {
             for(Gamepad g:gamepads) {
-                g.update();
+                //g.update();
             }
             int timeLeft = (int) (time - (System.currentTimeMillis() - startTime));
             if(gamepads.get(0).a && !team1Skip) {

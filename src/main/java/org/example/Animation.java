@@ -2,8 +2,10 @@ package org.example;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Animation {
@@ -14,33 +16,43 @@ public class Animation {
     boolean framesLoop;
     double resolution = 1000;
     CubicBezierCurve curve;
+    Point start;
 
 
-    public Animation(double[] xp, double[] yp, double s, int tm, String f, int[] fc, boolean fl) {
-        Vector2[] points = new Vector2[xp.length];
-        for (int i = 0; i < points.length; i++) {
-            points[i] = new Vector2(xp[i], yp[i]);
-            System.out.println(xp[i]);
+    public Animation(double[] xp, double[] yp, double s, int tm, String f, int[] fc, boolean fl, Point st) {
+        ArrayList<Vector2> points = new ArrayList<>();
+        for (int i = 0; i < xp.length; i++) {
+            points.add(new Vector2(xp[i], yp[i]));
         }
-        curve = new CubicBezierCurve(points[0], points[1], points[2], points[3]);
-        for (int i = 4; i < points.length - 1; i++) {
-            curve.createC1ContinuousCurve(points[i], points[i + 1]);
+        curve = new CubicBezierCurve(points.get(0), points.get(1), points.get(2), points.get(3));
+        points.remove(0);
+        points.remove(0);
+        points.remove(0);
+        points.remove(0);
+        while (!points.isEmpty()) {
+            curve = curve.createC1ContinuousCurve(points.get(0), points.get(1));
+            points.remove(0);
+            points.remove(0);
         }
         scale = s;
         timeMillis = tm;
         folder = f;
         frameChange = fc;
         framesLoop = fl;
+        start = st;
     }
 
-    public Animation(CubicBezierCurve cv, double s, int tm, String f, int[] fc, boolean fl) {
+    public Animation(CubicBezierCurve cv, double s, int tm, String f, int[] fc, boolean fl, Point st) {
         curve = cv;
         scale = s;
         timeMillis = tm;
         folder = f;
         frameChange = fc;
         framesLoop = fl;
+        start = st;
+
     }
+
 
     public int getFrameIndex(int timeMillis) {
         int i = 0;
@@ -70,7 +82,8 @@ public class Animation {
                 //get point
                 Vector2 p = curve.calculate((System.currentTimeMillis() - startTime) / timeMillis);
                 //set postion of charachter
-                jLabel.setBounds((int) (p.getX() * scale), (int) (p.getY() * scale), jLabel.getWidth(), jLabel.getHeight());
+                System.out.println(p.getX() + "" + p.getY());
+                jLabel.setBounds((int) (start.x + (p.getX() * scale)), (int) (start.y + (p.getY() * scale)), jLabel.getWidth(), jLabel.getHeight());
 
                 try {
                     jLabel.setIcon(getFrameImage(getFrameIndex((int) timeMillis)));
