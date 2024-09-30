@@ -3,6 +3,29 @@ package org.example;
 public class Dimension {
     public static final Dimension[] All_DIMENSIONS = new Dimension[]{
 
+            new Dimension("High color city", "TBD") {
+
+            },
+            new Dimension("Sketch world", "TBD") {
+
+            },
+            new Dimension("High color city", "TBD") {
+
+            },
+            new Dimension("Endless void", "TBD") {
+
+            },
+            new Dimension("Upside-down world", "TBD") {
+
+            },
+            new Dimension("Free Fall", "TBD") {
+
+            },
+            new Dimension("Shattered islands", "TBD") {
+
+            },
+
+
     };
     private static Dimension currentDimension = All_DIMENSIONS[0];
     private String name, folder;

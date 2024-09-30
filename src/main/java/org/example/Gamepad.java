@@ -1,9 +1,9 @@
 package org.example;
 
-//import net.java.games.input.Controller;
-//import net.java.games.input.ControllerEnvironment;
-//import net.java.games.input.Event;
-//import net.java.games.input.EventQueue;
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
+import net.java.games.input.Event;
+import net.java.games.input.EventQueue;
 
 
 import java.io.File;
@@ -46,151 +46,151 @@ public class Gamepad {
         leftYAxis = 0;
     }
 
-//    public static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
-//
-//        // Find constructor (class is package private, so we can't access it directly)
-//        Constructor<ControllerEnvironment> constructor = (Constructor<ControllerEnvironment>)
-//                Class.forName("net.java.games.input.DefaultControllerEnvironment").getDeclaredConstructors()[0];
-//
-//        // Constructor is package private, so we have to deactivate access control checks
-//        constructor.setAccessible(true);
-//
-//        // Create object with default constructor
-//        return constructor.newInstance();
-//    }
-//
-//    public void update() throws ReflectiveOperationException {
-//        /* Get the available controllers */
-//        System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
-//
-//        Controller[] controllers = createDefaultEnvironment().getControllers();
-//        Controller controller = null;
-//        for (int i = 0; i < controllers.length; i++) {
-//            if (controllers[i].getName().equals(name)) {
-//                controller = controllers[i];
-//            }
-//        }
-//
-//        /* Remember to poll each one */
-//        controller.poll();
-//
-//        /* Get the controllers event queue */
-//        EventQueue queue = controller.getEventQueue();
-//
-//        /* Create an event object for the underlying plugin to populate */
-//        Event event = new Event();
-//
-//        /* For each object in the queue */
-//        while (queue.getNextEvent(event)) {
-//            String name = event.getComponent().getName();
-//            float value = event.getValue();
-//            switch (name) {
-//                case "Button 0": {
-//                    y = value == 1;
-//                    break;
-//                }
-//                case "Button 1": {
-//                    b = value == 1;
-//                    break;
-//                }
-//                case "Button 2": {
-//                    a = value == 1;
-//                    break;
-//                }
-//                case "Button 3": {
-//                    x = value == 1;
-//                    break;
-//                }
-//                case "Button 4": {
-//                    l = value == 1;
-//                    break;
-//                }
-//                case "Button 5": {
-//                    r = value == 1;
-//                    break;
-//                }
-//                case "Button 6": {
-//                    zl = value == 1;
-//                    break;
-//                }
-//                case "Button 7": {
-//                    zr = value == 1;
-//                    break;
-//                }
-//                case "Button 8": {
-//                    select = value == 1;
-//                    break;
-//                }
-//                case "Button 9": {
-//                    start = value == 1;
-//                    break;
-//                }
-//                case "Button 12": {
-//                    home = value == 1;
-//                    break;
-//                }
-//                case "Button 13": {
-//                    screenshot = value == 1;
-//                    break;
-//                }
-//                case "Hat Switch": {
-//                    dPadUp = false;
-//                    dPadDown = false;
-//                    dPadRight = false;
-//                    dPadLeft = false;
-//                    if (value == 0.125) {
-//                        dPadUp = true;
-//                        dPadLeft = true;
-//                    } else if (value == 0.25) {
-//                        dPadUp = true;
-//                    } else if (value == 0.375) {
-//                        dPadUp = true;
-//                        dPadRight = true;
-//                    } else if (value == 0.5) {
-//                        dPadRight = true;
-//                    } else if (value == 0.625) {
-//                        dPadRight = true;
-//                        dPadDown = true;
-//                    } else if (value == 0.75) {
-//                        dPadDown = true;
-//                    } else if (value == 0.875) {
-//                        dPadDown = true;
-//                        dPadLeft = true;
-//                    } else if (value == 1) {
-//                        dPadLeft = true;
-//                    }
-//                }
-//                case "X Axis": {
-//                    rightXAxis = value;
-//                    if (Math.abs(rightXAxis) < 0.001) {
-//                        rightXAxis = 0;
-//                    }
-//                    break;
-//                }
-//                case "Y Axis": {
-//                    rightYAxis = value;
-//                    if (Math.abs(rightYAxis) < 0.001) {
-//                        rightYAxis = 0;
-//                    }
-//                    break;
-//                }
-//                case "Z Axis": {
-//                    leftYAxis = value;
-//                    if (Math.abs(leftYAxis) < 0.001) {
-//                        leftYAxis = 0;
-//                    }
-//                    break;
-//                }
-//                case "Z Rotation": {
-//                    leftXAxis = value;
-//                    if (Math.abs(leftXAxis) < 0.001) {
-//                        leftXAxis = 0;
-//                    }
-//                    break;
-//                }
-//            }
-//        }
-//    }
+    public static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
+
+        // Find constructor (class is package private, so we can't access it directly)
+        Constructor<ControllerEnvironment> constructor = (Constructor<ControllerEnvironment>)
+                Class.forName("net.java.games.input.DefaultControllerEnvironment").getDeclaredConstructors()[0];
+
+        // Constructor is package private, so we have to deactivate access control checks
+        constructor.setAccessible(true);
+
+        // Create object with default constructor
+        return constructor.newInstance();
+    }
+
+    public void update() throws ReflectiveOperationException {
+        /* Get the available controllers */
+        System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
+
+        Controller[] controllers = createDefaultEnvironment().getControllers();
+        Controller controller = null;
+        for (int i = 0; i < controllers.length; i++) {
+            if (controllers[i].getName().equals(name)) {
+                controller = controllers[i];
+            }
+        }
+
+        /* Remember to poll each one */
+        controller.poll();
+
+        /* Get the controllers event queue */
+        EventQueue queue = controller.getEventQueue();
+
+        /* Create an event object for the underlying plugin to populate */
+        Event event = new Event();
+
+        /* For each object in the queue */
+        while (queue.getNextEvent(event)) {
+            String name = event.getComponent().getName();
+            float value = event.getValue();
+            switch (name) {
+                case "Button 0": {
+                    y = value == 1;
+                    break;
+                }
+                case "Button 1": {
+                    b = value == 1;
+                    break;
+                }
+                case "Button 2": {
+                    a = value == 1;
+                    break;
+                }
+                case "Button 3": {
+                    x = value == 1;
+                    break;
+                }
+                case "Button 4": {
+                    l = value == 1;
+                    break;
+                }
+                case "Button 5": {
+                    r = value == 1;
+                    break;
+                }
+                case "Button 6": {
+                    zl = value == 1;
+                    break;
+                }
+                case "Button 7": {
+                    zr = value == 1;
+                    break;
+                }
+                case "Button 8": {
+                    select = value == 1;
+                    break;
+                }
+                case "Button 9": {
+                    start = value == 1;
+                    break;
+                }
+                case "Button 12": {
+                    home = value == 1;
+                    break;
+                }
+                case "Button 13": {
+                    screenshot = value == 1;
+                    break;
+                }
+                case "Hat Switch": {
+                    dPadUp = false;
+                    dPadDown = false;
+                    dPadRight = false;
+                    dPadLeft = false;
+                    if (value == 0.125) {
+                        dPadUp = true;
+                        dPadLeft = true;
+                    } else if (value == 0.25) {
+                        dPadUp = true;
+                    } else if (value == 0.375) {
+                        dPadUp = true;
+                        dPadRight = true;
+                    } else if (value == 0.5) {
+                        dPadRight = true;
+                    } else if (value == 0.625) {
+                        dPadRight = true;
+                        dPadDown = true;
+                    } else if (value == 0.75) {
+                        dPadDown = true;
+                    } else if (value == 0.875) {
+                        dPadDown = true;
+                        dPadLeft = true;
+                    } else if (value == 1) {
+                        dPadLeft = true;
+                    }
+                }
+                case "X Axis": {
+                    rightXAxis = value;
+                    if (Math.abs(rightXAxis) < 0.001) {
+                        rightXAxis = 0;
+                    }
+                    break;
+                }
+                case "Y Axis": {
+                    rightYAxis = value;
+                    if (Math.abs(rightYAxis) < 0.001) {
+                        rightYAxis = 0;
+                    }
+                    break;
+                }
+                case "Z Axis": {
+                    leftYAxis = value;
+                    if (Math.abs(leftYAxis) < 0.001) {
+                        leftYAxis = 0;
+                    }
+                    break;
+                }
+                case "Z Rotation": {
+                    leftXAxis = value;
+                    if (Math.abs(leftXAxis) < 0.001) {
+                        leftXAxis = 0;
+                    }
+                    break;
+                }
+            }
+        }
+    }
 
     @Override
     public String toString() {
