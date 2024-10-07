@@ -71,6 +71,10 @@ public class Charachter {
         return (int) (h / defense);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public double getDefense() {
         return defense;
     }

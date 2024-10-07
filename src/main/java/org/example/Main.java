@@ -1,15 +1,19 @@
 package org.example;
 
 import net.java.games.input.Controller;
+import org.example.Characters.*;
 
 
-import net.java.games.input.Controller;
 //import net.java.games.input.Controller;
 import static org.example.Gamepad.createDefaultEnvironment;
 import java.io.File;
 import java.util.ArrayList;
 public class Main {
     static private ArrayList<Gamepad> gamepads;
+    public static final GameScreen screen = new GameScreen();
+    public static final Charachter[] CHARACTERS = new Charachter[] {
+            new Orion(),new Leo(),new Baidam(),new Gleise(),new Velorum(),new Vela(),new Mir(),new Andromeda(),new Arrokoth(),new Skylar(),new Betelgeuse(),new Carina()
+    };
 
     public static void main(String[] args) throws ReflectiveOperationException {
         System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
@@ -20,8 +24,9 @@ public class Main {
                     controllers[i].getType() == Controller.Type.STICK || controllers[i].getType() == Controller.Type.GAMEPAD ||
                             controllers[i].getType() == Controller.Type.WHEEL || controllers[i].getType() == Controller.Type.FINGERSTICK
             )
-                gamepads.add(new Gamepad(controllers[i].getName()));
+                gamepads.add(new Gamepad(controllers[i]));
         }
+        screen.characterSelect();
 
 
     }

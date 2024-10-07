@@ -18,11 +18,11 @@ import java.lang.reflect.Constructor;
  */
 public class Gamepad {
 
-    private final String name;
+    private final Controller controller;
     volatile boolean dPadUp, dPadDown, dPadRight, dPadLeft, a, b, x, y, r, l, zr, zl, start, select, home, screenshot;
     volatile double rightXAxis, leftXAxis, rightYAxis, leftYAxis;
 
-    public Gamepad(String n) {
+    public Gamepad(Controller c) {
         dPadUp = false;
         dPadDown = false;
         dPadRight = false;
@@ -39,7 +39,7 @@ public class Gamepad {
         select = false;
         home = false;
         screenshot = false;
-        name = n;
+        controller = c;
         rightXAxis = 0;
         leftXAxis = 0;
         rightYAxis = 0;
@@ -63,13 +63,6 @@ public class Gamepad {
         /* Get the available controllers */
         System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
 
-        Controller[] controllers = createDefaultEnvironment().getControllers();
-        Controller controller = null;
-        for (int i = 0; i < controllers.length; i++) {
-            if (controllers[i].getName().equals(name)) {
-                controller = controllers[i];
-            }
-        }
 
         /* Remember to poll each one */
         controller.poll();
@@ -162,28 +155,28 @@ public class Gamepad {
                 }
                 case "X Axis": {
                     rightXAxis = value;
-                    if (Math.abs(rightXAxis) < 0.001) {
+                    if (Math.abs(rightXAxis) < 0.1) {
                         rightXAxis = 0;
                     }
                     break;
                 }
                 case "Y Axis": {
                     rightYAxis = value;
-                    if (Math.abs(rightYAxis) < 0.001) {
+                    if (Math.abs(rightYAxis) < 0.1) {
                         rightYAxis = 0;
                     }
                     break;
                 }
                 case "Z Axis": {
                     leftYAxis = value;
-                    if (Math.abs(leftYAxis) < 0.001) {
+                    if (Math.abs(leftYAxis) < 0.1) {
                         leftYAxis = 0;
                     }
                     break;
                 }
                 case "Z Rotation": {
                     leftXAxis = value;
-                    if (Math.abs(leftXAxis) < 0.001) {
+                    if (Math.abs(leftXAxis) < 0.1) {
                         leftXAxis = 0;
                     }
                     break;
@@ -199,7 +192,4 @@ public class Gamepad {
     }
 
 
-    public String getName() {
-        return name;
-    }
 }
