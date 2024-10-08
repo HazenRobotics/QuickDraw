@@ -16,7 +16,7 @@ public class Main {
     };
 
     public static void main(String[] args) throws ReflectiveOperationException {
-        System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
+        System.setProperty("net.java.games.input.librarypath", new File("..\\QuickDraw\\src\\main\\java\\org\\example\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
         Controller[] controllers = createDefaultEnvironment().getControllers();
         gamepads = new ArrayList<>();
         for (int i = 0; i < controllers.length; i++) {

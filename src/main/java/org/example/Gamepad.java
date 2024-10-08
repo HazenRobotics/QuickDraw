@@ -61,7 +61,7 @@ public class Gamepad {
 
     public void update() throws ReflectiveOperationException {
         /* Get the available controllers */
-        System.setProperty("net.java.games.input.librarypath", new File("C:\\Users\\C1nner\\Downloads\\jinput-jinput-2.0.10-49-gd9a5a7f\\jinput-jinput-d9a5a7f\\plugins\\windows\\src\\main").getAbsolutePath());
+        System.setProperty("net.java.games.input.librarypath", new File("org/example/jinput-jinput-2.0.10-49-gd9a5a7f/jinput-jinput-d9a5a7f/plugins/windows/src/main").getAbsolutePath());
 
 
         /* Remember to poll each one */
