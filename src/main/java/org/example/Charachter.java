@@ -14,7 +14,8 @@ public class Charachter {
     private final double[] baseStats;
     private final String name,charachterDescription;
     private final String folder;
-    private int maxHP, hp;
+    private final int maxHP;
+    private int hp;
     private ImageIcon characterProfile;
     private ArrayList<Effect> status;
     private double attackPower, defense, chargeRatio;
@@ -62,7 +63,7 @@ public class Charachter {
         if (hasEffect("Perfect Block")) {
             return 0;
         }
-        hp -= h / defense;
+        hp -= (int) (h / defense);
         return (int) (h / defense);
     }
 

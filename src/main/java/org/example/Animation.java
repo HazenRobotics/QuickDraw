@@ -3,10 +3,10 @@ package org.example;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Animation {
@@ -66,7 +66,7 @@ public class Animation {
                 }
             }
         } else {
-            while (frameChange[i] > timeMillis && i < frameChange.length) {
+            while (frameChange[i] > timeMillis) {
                 i++;
             }
 
@@ -79,7 +79,7 @@ public class Animation {
         return new Thread(() -> {
             //start
             long startTime = System.currentTimeMillis();
-            for (int i = 0; startTime + timeMillis > System.currentTimeMillis(); i++) {
+            while(startTime + timeMillis > System.currentTimeMillis()) {
                 //get point
                 double time = ((System.currentTimeMillis() - startTime) / timeMillis) * curve.size();
 
@@ -101,7 +101,7 @@ public class Animation {
 
 
     public ImageIcon getFrameImage(int frame) throws IOException {
-        return new ImageIcon(ImageIO.read(new File(folder).listFiles()[frame]));
+        return new ImageIcon(ImageIO.read(Objects.requireNonNull(new File(folder).listFiles())[frame]));
     }
 
 }

@@ -8,30 +8,48 @@ public class Dimension {
     public static final Dimension[] All_DIMENSIONS = new Dimension[]{
 
             new Dimension("High color city", "TBD", new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
             new Dimension("Sketch world", "TBD",new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
             new Dimension("Endless void", "TBD",new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
             new Dimension("Upside-down world", "TBD",new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
             new Dimension("Free Fall", "TBD",new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
             new Dimension("Shattered islands", "TBD",new Color[]{}) {
-
+                @Override
+                public void effect(Charachter c) {
+                    super.effect(c);
+                }
             },
 
 
     };
     private static Dimension currentDimension = All_DIMENSIONS[0];
     public static final Color[] PALLET_TO_CHANGE = {};
-    private Color[] pallet;
-    private String name, folder;
+    private final Color[] pallet;
+    private final String name, folder;
     private static boolean blocked = false;
     public static void Block() {
         blocked=true;
