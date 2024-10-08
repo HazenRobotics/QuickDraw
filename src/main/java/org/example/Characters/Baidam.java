@@ -6,7 +6,8 @@ import org.example.Effect;
 public class Baidam extends Charachter {
 
     public Baidam() {
-        super("Baidam", "TBD", 90,1.75,0.75);
+        super("Baidam","After being fired from his job as a sushi chef, Baidam joined the rest of, a powerful bounty-hunting group. Badam uses a trident and focuses on going all out. ",
+                "TBD", 90,1.75,0.75);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);

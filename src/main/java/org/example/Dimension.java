@@ -1,36 +1,43 @@
 package org.example;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 public class Dimension {
     public static final Dimension[] All_DIMENSIONS = new Dimension[]{
 
-            new Dimension("High color city", "TBD") {
+            new Dimension("High color city", "TBD", new Color[]{}) {
 
             },
-            new Dimension("Sketch world", "TBD") {
+            new Dimension("Sketch world", "TBD",new Color[]{}) {
 
             },
-            new Dimension("High color city", "TBD") {
+            new Dimension("Endless void", "TBD",new Color[]{}) {
 
             },
-            new Dimension("Endless void", "TBD") {
+            new Dimension("Upside-down world", "TBD",new Color[]{}) {
 
             },
-            new Dimension("Upside-down world", "TBD") {
+            new Dimension("Free Fall", "TBD",new Color[]{}) {
 
             },
-            new Dimension("Free Fall", "TBD") {
-
-            },
-            new Dimension("Shattered islands", "TBD") {
+            new Dimension("Shattered islands", "TBD",new Color[]{}) {
 
             },
 
 
     };
     private static Dimension currentDimension = All_DIMENSIONS[0];
+    public static final Color[] PALLET_TO_CHANGE = {};
+    private Color[] pallet;
     private String name, folder;
-
-    public Dimension(String n, String f) {
+    private static boolean blocked = false;
+    public static void Block() {
+        blocked=true;
+    }
+    public Dimension(String n, String f,Color[] p) {
+        pallet=p;
         name = n;
         folder = f;
     }
@@ -39,8 +46,15 @@ public class Dimension {
         long startTime = System.currentTimeMillis();
         while (true) {
             while (startTime + 10000 > System.currentTimeMillis()) ;
-            currentDimension = All_DIMENSIONS[Main.random(0, All_DIMENSIONS.length - 1)];
+            if(!blocked) {
+                cycleDimension();
+            } else {
+                blocked=false;
+            }
         }
+    }
+    public static void cycleDimension() {
+        currentDimension = All_DIMENSIONS[Main.random(0, All_DIMENSIONS.length - 1)];
     }
 
     public static Dimension getCurrentDimension() {
@@ -56,6 +70,25 @@ public class Dimension {
         }
     }
 
+    public static void setCurrentDimension(Dimension currentDimension) {
+        Dimension.currentDimension = currentDimension;
+    }
+
     public void effect(Charachter c) {
+    }
+    public ImageIcon changeToPallet(ImageIcon i) {
+        BufferedImage b = (BufferedImage) i.getImage();
+        for(int j=0; j<b.getWidth(); j++) {
+            for(int k=0; k<b.getHeight(); k++) {
+                Color c1 = new Color(b.getRGB(j,k));
+                for(int l=0; l<PALLET_TO_CHANGE.length; l++) {
+                    Color c2 = PALLET_TO_CHANGE[l];
+                    if(Math.sqrt((c1.getRed()-c2.getRed())^2+(c1.getGreen()-c2.getGreen())^2+(c1.getBlue()-c2.getBlue()^2))<=10) {
+                        b.setRGB(j,k,pallet[l].getRGB());
+                    }
+                }
+            }
+        }
+        return new ImageIcon(b);
     }
 }

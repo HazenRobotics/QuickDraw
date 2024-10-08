@@ -7,7 +7,8 @@ public class Gleise extends Charachter {
     double kill =0;
 
     public Gleise() {
-        super("Gleise", "TBD", 110,1.25,0.85);
+        super("Gleise","We know very little about Gliese. They are silent and unfeeling. They wield a katana and focus on finishing off opponents.",
+                "TBD", 110,1.25,0.85);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);

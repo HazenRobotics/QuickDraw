@@ -10,7 +10,8 @@ public class Arrokoth extends Charachter {
 
 
     public Arrokoth() {
-        super("Arrokoth", "TBD", 150, 0.75, 1.25);
+        super("Arrokoth", "Arrokoth was a dragon prince a long time ago. However, he was exiled for reasons only known to him. Through his magical cape, he can transform from an anthropomorphic dragon to a normal one. Transforming between these forms allows you to deal extra damage.",
+                "TBD", 150, 0.75, 1.25);
     }
 
     @Override

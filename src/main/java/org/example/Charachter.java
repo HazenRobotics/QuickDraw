@@ -11,23 +11,17 @@ public class Charachter {
             new double[]{2, 1.5, -1, 0, 2},
             new double[]{1, -1, 0, -2, 0}
     };
-    private String[] att;
-    private JLabel label;
-    private double[] baseStats;
-    private int maxHP;
-    private double chargeRatio;
-    private String name;
+    private final double[] baseStats;
+    private final String name,charachterDescription;
+    private final String folder;
+    private int maxHP, hp;
+    private ImageIcon characterProfile;
     private ArrayList<Effect> status;
-    private String folder;
-    private int priorityBonus = 0;
-    private int priorityMinimum = -2;
-    private double attackPower;
-    private int hp;
-    private double defense = 1;
+    private double attackPower, defense, chargeRatio;
     private Team team;
     private Charachter[] forms;
 
-    public Charachter(String n, String f, int m, double a, double c) {
+    public Charachter(String n,String cd, String f, int m, double a, double c) {
         maxHP = m;
         name = n;
         status = new ArrayList<>();
@@ -35,6 +29,7 @@ public class Charachter {
         attackPower = a;
         chargeRatio = c;
         hp = maxHP;
+        charachterDescription = cd;
         baseStats = new double[]{a, c};
     }
 
@@ -56,7 +51,7 @@ public class Charachter {
             if (status.get(i).getTriggerTime() == n) {
                 status.get(i).trigger();
                 status.get(i).tickDown();
-                if(status.get(i).getDuration()==0) {
+                if (status.get(i).getDuration() == 0) {
                     status.remove(i);
                 }
             }
@@ -219,9 +214,8 @@ public class Charachter {
                 p = 1;
             }
         }
-        p += priorityBonus;
-        if (p < priorityMinimum) {
-            p = priorityMinimum;
+        if (p < -2) {
+            p = -2;
         }
         if (p > 2) {
             p = 2;

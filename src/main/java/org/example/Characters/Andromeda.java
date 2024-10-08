@@ -6,7 +6,8 @@ import org.example.Effect;
 public class Andromeda extends Charachter {
 
     public Andromeda() {
-        super("Andromeda", "TBD", 175,0.66,1.05);
+        super("Andromeda", "Andromeda is a dragon with a galaxy on her back. With her wizarding abilities, she can transform from an anthropomorphic dragon to a normal one. She can curse opponents to deal damage in the future.",
+                "TBD", 175,0.66,1.05);
     }
     @Override public void normal(Charachter enemy,double p) {
         enemy.addEffect(Effect.getAllEffects()[10]);

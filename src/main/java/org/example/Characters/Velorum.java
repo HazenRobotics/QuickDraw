@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Velorum extends Charachter {
 
     public Velorum() {
-        super("Velorum", "TBD", 70,1.1,1.35);
+        super("Velorum","Velorum was killed around 50 years ago. Their body was brought back to life with 100s of souls. They specialize in damaging the whole enemy team which is their army of souls.",
+                "TBD", 70,1.1,1.35);
     }
     @Override public void normal(Charachter enemy,double p) {
         for(Charachter c:enemy.getTeam().getTeam()) {

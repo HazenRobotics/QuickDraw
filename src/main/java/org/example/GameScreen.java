@@ -23,6 +23,7 @@ public class GameScreen {
         SYSTEM.add(LABEL);
         LABEL.setIcon(CHARACTER_SELECT_BG.getImage());
         LABEL.setBounds(0, 0, (int) (3840 * UiElement.SCALE), (int) (2160 * UiElement.SCALE));
+        System.out.println(UiElement.SCALE);
         SYSTEM.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SYSTEM.getContentPane().setBackground(Color.GRAY);
         SYSTEM.setVisible(true);

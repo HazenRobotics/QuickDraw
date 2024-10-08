@@ -8,7 +8,8 @@ import org.example.Team;
 public class Orion extends Charachter {
     Team team;
     public Orion() {
-        super("Orion", "TBD", 100,1,1.25);
+        super("Orion","One day Orion woke up confused with no memories. They suspect that they were not originally a protogen. Orion focuses on supporting the team by charging up the super meter. ",
+                 "TBD", 100,1,1.25);
     }
 
 

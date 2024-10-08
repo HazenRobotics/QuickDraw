@@ -6,7 +6,8 @@ import org.example.Effect;
 public class Carina extends Charachter {
 
     public Carina() {
-        super("Carina", "TBD", 70, 1, 5);
+        super("Carina","Carina is an otter who owns a large spear that she uses to hunt. She can also call upon the spirits of the sea to help her. She uses these spirits to heal her teammates.",
+                "TBD", 70, 1, 5);
     }
 
     @Override

@@ -6,7 +6,8 @@ import org.example.Effect;
 public class Mir extends Charachter {
 
     public Mir() {
-        super("Mir", "TBD", 150,0.9,1);
+        super("Mir", "Mir is a fully robotic protogen. This makes them extremely durable.  However. Mir focuses on protecting himself so he can last as long as possible.",
+                "TBD", 150,0.9,1);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);

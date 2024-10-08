@@ -8,11 +8,8 @@ public class Skylar extends Charachter {
 
 
     public Skylar() {
-        super("Skylar", "TBD", 125, 0.7, 1.1);
-    }
-
-    public Skylar(String n, String f, int m, double a, double c) {
-        super(n, f, m, a, c);
+        super("Skylar","",
+                "TBD", 125, 0.7, 1.1);
     }
 
     @Override

@@ -6,7 +6,8 @@ import org.example.Effect;
 public class Vela extends Charachter {
 
     public Vela() {
-        super("Vela", "TBD", 125,1.1,0.90);
+        super("Vela","Vela is an older type of protogen that is a prototype. Over the years they have broken down. They are skilled at pulling off comebacks. They thrive when the battle seems lost.",
+                "TBD", 125,1.1,0.90);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);

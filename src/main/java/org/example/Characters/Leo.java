@@ -7,7 +7,8 @@ import org.example.Main;
 public class Leo extends Charachter {
 
     public Leo() {
-        super("Leo", "TBD", 70,1.5,1);
+        super("Leo", "TBD","Leo is a highly skilled marksman. They often hide on the sidelines only to hit the killing shot. No matter the target they never seem to miss.  Leo focuses on poisoning the opponents and dodging attacks. ",
+                70,1.5,1);
     }
     @Override public void normal(Charachter enemy,double p) {
         super.normal(enemy,p);
