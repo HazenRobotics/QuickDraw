@@ -26,7 +26,9 @@ public class Main {
             )
                 gamepads.add(new Gamepad(controllers[i]));
         }
-        screen.characterSelect();
+        if(gamepads.size()>1) {
+            screen.characterSelect();
+        }
 
 
     }

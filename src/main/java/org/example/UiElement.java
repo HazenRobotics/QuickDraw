@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,9 +30,8 @@ public class UiElement {
         imageStates= ui.imageStates;
         GameScreen.SYSTEM.add(jLabel);
         jLabel.setIcon(ui.getImage());
-        jLabel.setBounds(this.x, this.y,ui.jLabel.getWidth(), ui.jLabel.getHeight());
+        jLabel.setBounds((int) (x*SCALE), (int) (y*SCALE),ui.jLabel.getWidth(), ui.jLabel.getHeight());
         jLabel.setVisible(false);
-        jLabel.setLocation((int) (x*SCALE), (int) (y*SCALE));
         i=ui.i;
 
     }

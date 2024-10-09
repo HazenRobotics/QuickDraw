@@ -5,6 +5,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScreen {
+    public static final GraphicsEnvironment GRAPHICS =
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+    public static final GraphicsDevice device = GRAPHICS.getDefaultScreenDevice();
     public static final JFrame SYSTEM = new JFrame("");
     public static final JLabel LABEL = new JLabel();
     public static final UiElement CHARACTER_SELECT_BG = new UiElement(new ImageIcon[]{new ImageIcon("src/main/java/org/example/Images/Ui/charachter select.png")}, 3842, 2160, 0, 0);
@@ -23,10 +26,15 @@ public class GameScreen {
         SYSTEM.add(LABEL);
         LABEL.setIcon(CHARACTER_SELECT_BG.getImage());
         LABEL.setBounds(0, 0, (int) (3840 * UiElement.SCALE), (int) (2160 * UiElement.SCALE));
-        System.out.println(UiElement.SCALE);
         SYSTEM.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SYSTEM.getContentPane().setBackground(Color.GRAY);
         SYSTEM.setVisible(true);
+        SYSTEM.setResizable(false);
+        SYSTEM.dispose();
+        SYSTEM.setUndecorated(true);
+
+        SYSTEM.setExtendedState(Frame.MAXIMIZED_BOTH);
+        device.setFullScreenWindow(SYSTEM);
         SYSTEM.pack();
 
 
