@@ -1,4 +1,4 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

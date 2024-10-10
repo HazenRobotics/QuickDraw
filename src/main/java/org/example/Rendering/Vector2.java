@@ -1,4 +1,4 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 public class Vector2 {
     private double x, y;

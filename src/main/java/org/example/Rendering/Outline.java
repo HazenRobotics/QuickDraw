@@ -1,4 +1,4 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -52,7 +52,7 @@ public class Outline {
             x+=p.x;
             y+=p.y;
         }
-        return new Point(x, y);
+        return new Point(x/lightSources.size(), y/lightSources.size());
     }
     public void setColor(Color c) {
         for (int i = 0; i < image.getWidth(); i++) {

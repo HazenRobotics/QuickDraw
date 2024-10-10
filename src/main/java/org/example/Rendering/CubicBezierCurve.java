@@ -1,4 +1,4 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 public class CubicBezierCurve {
 

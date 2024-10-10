@@ -1,4 +1,4 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 import org.example.GameScreen;
 

@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.Renndering.UiElement;
+import org.example.Rendering.UiElement;
 
 import javax.swing.*;
 import java.awt.*;
