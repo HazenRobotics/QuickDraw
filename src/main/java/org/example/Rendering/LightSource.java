@@ -1,11 +1,11 @@
-package org.example.Renndering;
+package org.example.Rendering;
 
 import java.awt.*;
 
 public class LightSource {
     private final Point pos;
     private final double power;
-    public final double PIXELS_PER_UNIT=1000;
+    public final double PIXELS_PER_UNIT=100000;
 
     public LightSource(Point po, double p) {
         pos = po;
@@ -21,7 +21,12 @@ public class LightSource {
     }
 
     public double getPowerFromDistance(double d) {
-        return Math.pow(power*PIXELS_PER_UNIT,-d);
+        double i=(-(1/16.5)*d)+17;
+        System.out.println(i);
+        if(d>40) {
+            i=0.5;
+        }
+        return power/(Math.pow(d,i));
     }
 
     public double getSlopeFromPoint(Point p) {
