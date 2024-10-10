@@ -1,4 +1,6 @@
-package org.example;
+package org.example.Renndering;
+
+import org.example.GameScreen;
 
 import javax.swing.*;
 import java.awt.*;
