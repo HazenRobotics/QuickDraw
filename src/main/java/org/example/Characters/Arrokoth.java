@@ -37,11 +37,11 @@ public class Arrokoth extends Charachter {
                         super.heavy(enemy, p);
                         if (transformedLastTurn) {
                             if (getTeam().size() > 1) {
-                                if (Main.choice(getTeam().getGamepadIndex(), getTeam().size() - 1, "Whos attack would you like to use?") == 0 || getTeam().size() == 2) {
-                                    getTeam().get(1).heavy(enemy, p);
-                                } else {
-                                    getTeam().get(2).heavy(enemy, p);
-                                }
+//                                if (Main.choice(getTeam().getGamepadIndex(), getTeam().size() - 1, "Whos attack would you like to use?") == 0 || getTeam().size() == 2) {
+//                                    getTeam().get(1).heavy(enemy, p);
+//                                } else {
+//                                    getTeam().get(2).heavy(enemy, p);
+//                                }
                             }
                         }
                     }
@@ -83,11 +83,11 @@ public class Arrokoth extends Charachter {
         super.light(enemy, p);
         if (transformedLastTurn) {
             if (getTeam().size() > 1) {
-                if (Main.choice(getTeam().getGamepadIndex(), getTeam().size() - 1, "Whos attack would you like to use?") == 0 || getTeam().size() == 2) {
-                    getTeam().get(1).light(enemy, p);
-                } else {
-                    getTeam().get(2).light(enemy, p);
-                }
+//                if (Main.choice(getTeam().getGamepadIndex(), getTeam().size() - 1, "Whos attack would you like to use?") == 0 || getTeam().size() == 2) {
+//                    getTeam().get(1).light(enemy, p);
+//                } else {
+//                    getTeam().get(2).light(enemy, p);
+//                }
             }
         }
     }

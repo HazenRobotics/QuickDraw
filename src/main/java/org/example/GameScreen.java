@@ -62,138 +62,138 @@ public class GameScreen {
         ArrayList<Integer> skips2 = new ArrayList<>();
 
         while (!(team1.size() == 3 && team2.size() == 3) ) {
-            Main.getGamepads().get(1).update();
-            Main.getGamepads().get(0).update();
-
-            //gamepad 1 input
-            if (cooldown1 <= 0 ) {
-                if (Main.getGamepads().get(0).dPadLeft && team1.size() != 3) {
-                    i1--;
-                    cooldown1 = 200;
-                    System.out.println("left0 " + System.currentTimeMillis());
-                } else if (Main.getGamepads().get(0).dPadRight && team1.size() != 3) {
-                    i1++;
-                    cooldown1 = 200;
-                    System.out.println("Right0 " + System.currentTimeMillis());
-
-                } else if (Main.getGamepads().get(0).a && team1.size() != 3) {
-                    team1.add(Main.CHARACTERS[i1]);
-                    skips1.add(i1);
-                    i1++;
-                    cooldown1 = 200;
-                    System.out.println("a0 " + System.currentTimeMillis());
-
-                } else if (Main.getGamepads().get(0).b) {
-                    if (!team1.isEmpty()) {
-                        CHARACTER_SELECT_HIGHLIGHTS[skips1.get(skips1.size() - 1)].setVisible(false);
-                        skips1.remove(skips1.size() - 1);
-                        team1.remove(team1.size() - 1);
-                        cooldown1 = 200;
-
-                    }
-
-                }
-            } else {
-                if (team1.size() == 3) {
-                    i1 = -100;
-                }else if(i1==-100){
-                    i1=0;
-                }
-                cooldown1 -= System.currentTimeMillis() - lastTime;
-            }
-            //gamepad 2 input
-            if (cooldown2 <= 0 ) {
-
-                if (Main.getGamepads().get(1).dPadLeft && team2.size() != 3) {
-                    i2--;
-                    cooldown2 = 200;
-                    System.out.println("left1 " + System.currentTimeMillis());
-
-
-                } else if (Main.getGamepads().get(1).dPadRight && team2.size() != 3) {
-                    i2++;
-                    cooldown2 = 200;
-                    System.out.println("Right1 " + System.currentTimeMillis());
-
-                } else if (Main.getGamepads().get(1).a && team2.size() != 3) {
-                    team2.add(Main.CHARACTERS[i2]);
-                    skips2.add(i2);
-                    i2++;
-                    cooldown2 = 200;
-                    System.out.println("a1 " + System.currentTimeMillis());
-
-                } else if (Main.getGamepads().get(1).b) {
-                    if (!team2.isEmpty()) {
-                        CHARACTER_SELECT_HIGHLIGHTS[skips2.get(skips2.size() - 1)].setVisible(false);
-                        skips2.remove(skips2.size() - 1);
-                        team2.remove(team2.size() - 1);
-                        cooldown2 = 200;
-                    }
-
-
-                }
-            } else {
-                if (team2.size() == 3) {
-                    i2 = -100;
-                } else if(i2==-100){
-                    i2=0;
-                }
-                cooldown2 -= System.currentTimeMillis() - lastTime;
-
-            }
-            for (int i = 0; i < skips1.size(); i++) {
-                if (skips1.get(i) == i1) {
-                    if (Main.getGamepads().get(0).dPadLeft) {
-                        i1--;
-                    } else  {
-                        i1++;
-                    }
-                    i=0;
-                }
-                if (skips1.get(i) == i2) {
-                    if (Main.getGamepads().get(1).dPadLeft) {
-                        i2--;
-                    } else  {
-                        i2++;
-                    }
-                    i=0;
-                }
-            }
-            for (int i = 0; i < skips2.size(); i++) {
-                if (skips2.get(i) == i1) {
-                    if (Main.getGamepads().get(0).dPadLeft) {
-                        i1--;
-                    } else  {
-                        i1++;
-                    }
-                    i = 0;
-                }
-                if (skips2.get(i) == i2) {
-                    if (Main.getGamepads().get(1).dPadLeft) {
-                        i2--;
-                    } else  {
-                        i2++;
-                    }
-                    i = 0;
-
-                }
-            }
-            if (i2 == i1) {
-                if (Main.getGamepads().get(0).dPadLeft || Main.getGamepads().get(0).dPadRight) {
-                    if (Main.getGamepads().get(0).dPadLeft) {
-                        i1--;
-                    } else  {
-                        i1++;
-                    }
-                } else {
-                    if (Main.getGamepads().get(1).dPadLeft) {
-                        i2--;
-                    } else {
-                        i2++;
-
-                    }
-                }
-            }
+//            Main.getGamepads().get(1).update();
+//            Main.getGamepads().get(0).update();
+//
+//            //gamepad 1 input
+//            if (cooldown1 <= 0 ) {
+//                if (Main.getGamepads().get(0).dPadLeft && team1.size() != 3) {
+//                    i1--;
+//                    cooldown1 = 200;
+//                    System.out.println("left0 " + System.currentTimeMillis());
+//                } else if (Main.getGamepads().get(0).dPadRight && team1.size() != 3) {
+//                    i1++;
+//                    cooldown1 = 200;
+//                    System.out.println("Right0 " + System.currentTimeMillis());
+//
+//                } else if (Main.getGamepads().get(0).a && team1.size() != 3) {
+//                    team1.add(Main.CHARACTERS[i1]);
+//                    skips1.add(i1);
+//                    i1++;
+//                    cooldown1 = 200;
+//                    System.out.println("a0 " + System.currentTimeMillis());
+//
+//                } else if (Main.getGamepads().get(0).b) {
+//                    if (!team1.isEmpty()) {
+//                        CHARACTER_SELECT_HIGHLIGHTS[skips1.get(skips1.size() - 1)].setVisible(false);
+//                        skips1.remove(skips1.size() - 1);
+//                        team1.remove(team1.size() - 1);
+//                        cooldown1 = 200;
+//
+//                    }
+//
+//                }
+//            } else {
+//                if (team1.size() == 3) {
+//                    i1 = -100;
+//                }else if(i1==-100){
+//                    i1=0;
+//                }
+//                cooldown1 -= System.currentTimeMillis() - lastTime;
+//            }
+//            //gamepad 2 input
+//            if (cooldown2 <= 0 ) {
+//
+//                if (Main.getGamepads().get(1).dPadLeft && team2.size() != 3) {
+//                    i2--;
+//                    cooldown2 = 200;
+//                    System.out.println("left1 " + System.currentTimeMillis());
+//
+//
+//                } else if (Main.getGamepads().get(1).dPadRight && team2.size() != 3) {
+//                    i2++;
+//                    cooldown2 = 200;
+//                    System.out.println("Right1 " + System.currentTimeMillis());
+//
+//                } else if (Main.getGamepads().get(1).a && team2.size() != 3) {
+//                    team2.add(Main.CHARACTERS[i2]);
+//                    skips2.add(i2);
+//                    i2++;
+//                    cooldown2 = 200;
+//                    System.out.println("a1 " + System.currentTimeMillis());
+//
+//                } else if (Main.getGamepads().get(1).b) {
+//                    if (!team2.isEmpty()) {
+//                        CHARACTER_SELECT_HIGHLIGHTS[skips2.get(skips2.size() - 1)].setVisible(false);
+//                        skips2.remove(skips2.size() - 1);
+//                        team2.remove(team2.size() - 1);
+//                        cooldown2 = 200;
+//                    }
+//
+//
+//                }
+//            } else {
+//                if (team2.size() == 3) {
+//                    i2 = -100;
+//                } else if(i2==-100){
+//                    i2=0;
+//                }
+//                cooldown2 -= System.currentTimeMillis() - lastTime;
+//
+//            }
+//            for (int i = 0; i < skips1.size(); i++) {
+//                if (skips1.get(i) == i1) {
+//                    if (Main.getGamepads().get(0).dPadLeft) {
+//                        i1--;
+//                    } else  {
+//                        i1++;
+//                    }
+//                    i=0;
+//                }
+//                if (skips1.get(i) == i2) {
+//                    if (Main.getGamepads().get(1).dPadLeft) {
+//                        i2--;
+//                    } else  {
+//                        i2++;
+//                    }
+//                    i=0;
+//                }
+//            }
+//            for (int i = 0; i < skips2.size(); i++) {
+//                if (skips2.get(i) == i1) {
+//                    if (Main.getGamepads().get(0).dPadLeft) {
+//                        i1--;
+//                    } else  {
+//                        i1++;
+//                    }
+//                    i = 0;
+//                }
+//                if (skips2.get(i) == i2) {
+//                    if (Main.getGamepads().get(1).dPadLeft) {
+//                        i2--;
+//                    } else  {
+//                        i2++;
+//                    }
+//                    i = 0;
+//
+//                }
+//            }
+//            if (i2 == i1) {
+//                if (Main.getGamepads().get(0).dPadLeft || Main.getGamepads().get(0).dPadRight) {
+//                    if (Main.getGamepads().get(0).dPadLeft) {
+//                        i1--;
+//                    } else  {
+//                        i1++;
+//                    }
+//                } else {
+//                    if (Main.getGamepads().get(1).dPadLeft) {
+//                        i2--;
+//                    } else {
+//                        i2++;
+//
+//                    }
+//                }
+//            }
 
             if (i1 < 0 && i1 != -100) {
                 i1 = CHARACTER_SELECT_HIGHLIGHTS.length - 1;

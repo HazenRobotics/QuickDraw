@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 
 public class Battle {
-    private final ArrayList<Gamepad> gamepads = Main.getGamepads();
+    //private final ArrayList<Gamepad> gamepads = Main.getGamepads();
     private final Team team1;
     private final Team team2;
     int team1Index = -1;
@@ -18,34 +18,34 @@ public class Battle {
         t.start();
         while (!team2.isTeamLeft() || !team1.isTeamLeft()) {
             planPhase();
-            choosePhase();
+            //choosePhase();
             attackPhase();
         }
 
     }
 
-    public void choosePhase() {
-        team1Index = -1;
-        team2Index = -1;
-        long startTime = System.currentTimeMillis();
-        while (startTime + 3000 > System.currentTimeMillis() && (team1Index == -1 || team2Index == -1)) {
-            int timeLeft = (int) (3000 - (System.currentTimeMillis() - startTime));
-            if (team1.chooseAttack() != -1) {
-                if (team1.chooseAttack() == -1) {
-                    team1goesFirst = true;
-                }
-                team1Index = team1.chooseAttack();
-            }
-            if (team2.chooseAttack() != -1) {
-                if (team1.chooseAttack() == -1) {
-                    team1goesFirst = false;
-                }
-                team2Index = team1.chooseAttack();
-            }
-
-        }
-
-    }
+//    public void choosePhase() {
+//        team1Index = -1;
+//        team2Index = -1;
+//        long startTime = System.currentTimeMillis();
+//        while (startTime + 3000 > System.currentTimeMillis() && (team1Index == -1 || team2Index == -1)) {
+//            int timeLeft = (int) (3000 - (System.currentTimeMillis() - startTime));
+//            if (team1.chooseAttack() != -1) {
+//                if (team1.chooseAttack() == -1) {
+//                    team1goesFirst = true;
+//                }
+//                team1Index = team1.chooseAttack();
+//            }
+//            if (team2.chooseAttack() != -1) {
+//                if (team1.chooseAttack() == -1) {
+//                    team1goesFirst = false;
+//                }
+//                team2Index = team1.chooseAttack();
+//            }
+//
+//        }
+//
+//    }
 
     public void attackPhase() {
         Dimension.getCurrentDimension().runForEveryone(team1,team2);
@@ -123,19 +123,19 @@ public class Battle {
         int time = 10000;
         boolean team1Skip = false;
         boolean team2Skip = false;
-        while (startTime + time > System.currentTimeMillis() && !(team2Skip && team1Skip)) {
-            for(Gamepad g:gamepads) {
-                g.update();
-            }
-            int timeLeft = (int) (time - (System.currentTimeMillis() - startTime));
-            if(gamepads.get(0).a && !team1Skip) {
-                team1Skip=true;
-            }
-            if(gamepads.get(1).a && !team2Skip) {
-                team2Skip=true;
-            }
-
-        }
+//        while (startTime + time > System.currentTimeMillis() && !(team2Skip && team1Skip)) {
+//            for(Gamepad g:gamepads) {
+//                g.update();
+//            }
+//            int timeLeft = (int) (time - (System.currentTimeMillis() - startTime));
+//            if(gamepads.get(0).a && !team1Skip) {
+//                team1Skip=true;
+//            }
+//            if(gamepads.get(1).a && !team2Skip) {
+//                team2Skip=true;
+//            }
+//
+//        }
     }
 
 

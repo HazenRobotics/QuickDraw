@@ -51,9 +51,9 @@ public class Skylar extends Charachter {
     @Override
     public void block(Charachter enemy, double p) {
         super.block(enemy, p);
-        if(Main.choice(getTeam().getGamepadIndex(),1,"Would you like to switch")==0) {
-            getTeam().switchFighter(Main.choice(getTeam().getGamepadIndex(),1,"Who would you like to switch"));
-        }
+//        if(Main.choice(getTeam().getGamepadIndex(),1,"Would you like to switch")==0) {
+//            getTeam().switchFighter(Main.choice(getTeam().getGamepadIndex(),1,"Who would you like to switch"));
+//        }
     }
 
     @Override

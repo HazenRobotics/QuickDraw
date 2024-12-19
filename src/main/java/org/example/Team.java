@@ -102,37 +102,37 @@ public class Team {
         team.set(i,c);
     }
 
-    public int chooseAttack() {
-        Gamepad gamepad = Main.getGamepads().get(gamepadIndex);
-        if (gamepad.a) {
-            return 0;
-        } else if (gamepad.b) {
-            return 1;
-        } else if (gamepad.x) {
-            return 2;
-        } else if (gamepad.y) {
-            return 3;
-        } else if (gamepad.r || gamepad.l) {
-            if (team.size() > 0) {
-                if (gamepad.l && team.size() < 2) {
-                    switchIn = team.get(2);
-                } else {
-                    switchIn = team.get(1);
-                }
-            }
-            return 4;
-        } else if ((gamepad.zl || gamepad.zr))  {
-            if(getSpecialCharge()==100) {
-                return 5;
-            } else {
-                return 6;
-            }
-        }
-        else {
-            return -1;
-        }
-
-    }
+//    public int chooseAttack() {
+//        Gamepad gamepad = Main.getGamepads().get(gamepadIndex);
+//        if (gamepad.a) {
+//            return 0;
+//        } else if (gamepad.b) {
+//            return 1;
+//        } else if (gamepad.x) {
+//            return 2;
+//        } else if (gamepad.y) {
+//            return 3;
+//        } else if (gamepad.r || gamepad.l) {
+//            if (team.size() > 0) {
+//                if (gamepad.l && team.size() < 2) {
+//                    switchIn = team.get(2);
+//                } else {
+//                    switchIn = team.get(1);
+//                }
+//            }
+//            return 4;
+//        } else if ((gamepad.zl || gamepad.zr))  {
+//            if(getSpecialCharge()==100) {
+//                return 5;
+//            } else {
+//                return 6;
+//            }
+//        }
+//        else {
+//            return -1;
+//        }
+//
+//    }
     //i grabs target
     //c is switch out
     public void transform(int i,Charachter c) {

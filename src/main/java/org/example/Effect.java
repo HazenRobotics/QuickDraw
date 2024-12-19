@@ -103,9 +103,9 @@ public abstract class Effect {
     }, new Effect("Switch", "TBD", 2, 1, false) {
         @Override
         public void trigger() {
-            if (Main.choice(target.getTeam().getGamepadIndex(), 1, "Would you like to switch") == 0) {
-                target.getTeam().switchFighter(Main.choice(target.getTeam().getGamepadIndex(), 1, "Who would you like to switch"));
-            }
+//            if (Main.choice(target.getTeam().getGamepadIndex(), 1, "Would you like to switch") == 0) {
+//                target.getTeam().switchFighter(Main.choice(target.getTeam().getGamepadIndex(), 1, "Who would you like to switch"));
+//            }
         }
 
     }, new Effect("Healing", "TBD", 2, 3, false) {

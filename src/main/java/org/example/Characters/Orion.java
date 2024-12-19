@@ -51,11 +51,11 @@ public class Orion extends Charachter {
     }
     @Override public void ultimate(Charachter enemy, double p) {
         if(team.size()>1) {
-            if (Main.choice(team.getGamepadIndex(),team.size()-1,"Whos ultimate would you like to use?")==0 || team.size()==2){
-                team.get(1).ultimate(enemy,p);
-            } else {
-                team.get(2).ultimate(enemy,p);
-            }
+//            if (Main.choice(team.getGamepadIndex(),team.size()-1,"Whos ultimate would you like to use?")==0 || team.size()==2){
+//                team.get(1).ultimate(enemy,p);
+//            } else {
+//                team.get(2).ultimate(enemy,p);
+//            }
         }
 
     }
